@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.berg.dao.system.mp.mapper.MenuTblMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.berg.dao.system.mp.entity.MenuTbl">
+        <id column="id" property="id" />
+        <result column="app_id" property="appId" />
+        <result column="menu" property="menu" />
+        <result column="remark" property="remark" />
+        <result column="create_time" property="createTime" />
+        <result column="create_user" property="createUser" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, app_id, menu, remark, create_time, create_user
+    </sql>
+
+</mapper>
