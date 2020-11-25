@@ -21,6 +21,8 @@ public class RedisKeyConstants {
 		public static final String MP_OAUTH_REFRESH_ACCESS_TOKEN = "mp_oauth_refresh_access_token_%s_%s";
 		//微信公众号会员注册验证码(appId,phone)
 		public static final String MP_VERIFY_CODE = "mp_verify_code_%s_%s";
+		//微信公众号模板消息列表(appId)
+		public static final String MP_TEMPLATE_LIST = "mp_template_list_%s";
 	}
 
 }
