@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.berg.dao.system.mp.mapper.MsgPublishTblMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.berg.dao.system.mp.entity.MsgPublishTbl">
+        <id column="id" property="id" />
+        <result column="app_id" property="appId" />
+        <result column="publish_cycle" property="publishCycle" />
+        <result column="publish_time" property="publishTime" />
+        <result column="publish_date" property="publishDate" />
+        <result column="publish_limit" property="publishLimit" />
+        <result column="publish_people" property="publishPeople" />
+        <result column="operate_type" property="operateType" />
+        <result column="template_id" property="templateId" />
+        <result column="data" property="data" />
+        <result column="url" property="url" />
+        <result column="miniapp_appid" property="miniappAppid" />
+        <result column="miniapp_page" property="miniappPage" />
+        <result column="user_miniapp_path" property="userMiniappPath" />
+        <result column="remark" property="remark" />
+        <result column="create_user" property="createUser" />
+        <result column="create_time" property="createTime" />
+        <result column="modify_user" property="modifyUser" />
+        <result column="modify_time" property="modifyTime" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, app_id, publish_cycle, publish_time, publish_date, publish_limit, publish_people, operate_type, template_id, data, url, miniapp_appid, miniapp_page, user_miniapp_path, remark, create_user, create_time, modify_user, modify_time, status
+    </sql>
+
+</mapper>

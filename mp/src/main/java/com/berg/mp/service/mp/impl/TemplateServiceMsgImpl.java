@@ -1,15 +1,17 @@
 package com.berg.mp.service.mp.impl;
 
+import cn.hutool.json.JSONUtil;
 import com.berg.constant.RedisKeyConstants;
 import com.berg.exception.FailException;
 import com.berg.mp.service.base.BaseService;
-import com.berg.mp.service.mp.TemplateService;
+import com.berg.mp.service.mp.TemplateMsgService;
 import com.berg.vo.mp.MpTemplateVo;
 import com.berg.vo.mp.in.MpTemplateSendInVo;
 import com.berg.wx.mp.utils.WxMpUtil;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplate;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,13 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class TemplateServiceImpl extends BaseService implements TemplateService {
+public class TemplateServiceMsgImpl extends BaseService implements TemplateMsgService {
 
     @Resource
     RedisTemplate<String, MpTemplateVo> redisTemplate;
+
+    @Autowired
+    TemplateMsgAsyncTask templateAsyncTask;
 
     /**
      * 获取模板消息列表
@@ -53,11 +58,15 @@ public class TemplateServiceImpl extends BaseService implements TemplateService 
     @Override
     public String send(MpTemplateSendInVo input){
         String msgId = "";
+        String appId = getAppId();
         try {
             WxMpTemplateMessage message = new WxMpTemplateMessage();
             BeanUtils.copyProperties(input,message);
-            msgId = WxMpUtil.getService(getAppId()).getTemplateMsgService().sendTemplateMsg(message);
+            msgId = WxMpUtil.getService(appId).getTemplateMsgService().sendTemplateMsg(message);
             //新增消息发送记录
+            templateAsyncTask.addMsgRecord(appId,input.getToUser(),msgId,input.getTemplateId(),
+                    JSONUtil.toJsonStr(input.getData()),input.getUrl(),input.getMiniProgram().getAppid(),
+                    input.getMiniProgram().getPagePath(),input.getMiniProgram().getUsePath()==true?1:0,input.getRemark());
         } catch (Exception ex) {
             throw new FailException("调用公众号发送客服文本消息接口sendText失败:" + ex.getMessage());
         }

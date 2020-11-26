@@ -1,12 +1,20 @@
 package com.berg.system.service.mp.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.berg.constant.RedisKeyConstants;
+import com.berg.dao.page.PageInfo;
+import com.berg.dao.system.mp.entity.MsgRecordTbl;
+import com.berg.dao.system.mp.service.MsgRecordTblDao;
 import com.berg.exception.FailException;
-import com.berg.system.service.mp.TemplateService;
+import com.berg.system.service.mp.TemplateMsgService;
 import com.berg.vo.mp.MpTemplateVo;
+import com.berg.vo.mp.MsgRecordVo;
+import com.berg.vo.mp.in.GetMsgRecordPageInVo;
 import com.berg.wx.mp.utils.WxMpUtil;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplate;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +22,30 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class TemplateServiceImpl implements TemplateService {
+public class TemplateMsgServiceImpl implements TemplateMsgService {
 
     @Resource
     RedisTemplate<String, MpTemplateVo> redisTemplate;
 
+    @Autowired
+    MsgRecordTblDao msgRecordTblDao;
+
+    /**
+     * 获取模板消息发送分页列表
+     * @param input
+     * @return
+     */
+    @Override
+    public PageInfo<MsgRecordVo> getMsgRecordPage(GetMsgRecordPageInVo input){
+        return msgRecordTblDao.page(input,()->{
+            LambdaQueryWrapper query = new LambdaQueryWrapper<MsgRecordTbl>()
+                    .eq(StringUtils.isNotBlank(input.getAppId()),MsgRecordTbl::getAppId,input.getAppId())
+                    .eq(StringUtils.isNotBlank(input.getTemplateId()),MsgRecordTbl::getTemplateId,input.getTemplateId())
+                    .like(StringUtils.isNotBlank(input.getRemark()),MsgRecordTbl::getRemark,input.getRemark())
+                    .orderByDesc(MsgRecordTbl::getCreateTime);
+            return msgRecordTblDao.list(query,MsgRecordVo.class);
+        });
+    }
     /**
      * 获取模板消息列表
      * @param appId
@@ -52,4 +79,5 @@ public class TemplateServiceImpl implements TemplateService {
         String key = String.format(RedisKeyConstants.Mp.MP_TEMPLATE_LIST,appId);
         redisTemplate.delete(key);
     }
+
 }

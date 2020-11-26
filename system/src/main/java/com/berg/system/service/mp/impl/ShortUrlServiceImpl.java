@@ -36,7 +36,8 @@ public class ShortUrlServiceImpl implements ShortUrlService {
         return shortUrlTblDao.page(input,()->{
             LambdaQueryWrapper<ShortUrlTbl> query = new LambdaQueryWrapper<ShortUrlTbl>()
                     .eq(ShortUrlTbl::getAppId,input.getAppId())
-                    .like(StringUtils.isNotBlank(input.getRemark()),ShortUrlTbl::getRemark,input.getRemark());
+                    .like(StringUtils.isNotBlank(input.getRemark()),ShortUrlTbl::getRemark,input.getRemark())
+                    .orderByDesc(ShortUrlTbl::getCreateTime);
             return shortUrlTblDao.list(query,ShortUrlVo.class);
         });
     }

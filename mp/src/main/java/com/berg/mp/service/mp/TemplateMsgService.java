@@ -5,7 +5,7 @@ import com.berg.vo.mp.in.MpTemplateSendInVo;
 
 import java.util.List;
 
-public interface TemplateService {
+public interface TemplateMsgService {
 
     List<MpTemplateVo> getTemplateList();
 

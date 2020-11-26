@@ -27,4 +27,6 @@ public class MpTemplateSendInVo {
     @Size(min = 1, message = "模板消息内容不能小于1")
     @ApiModelProperty(value = "模板消息内容")
     List<MpTemplateDataVo> data;
+    @ApiModelProperty(value = "描述")
+    String remark;
 }

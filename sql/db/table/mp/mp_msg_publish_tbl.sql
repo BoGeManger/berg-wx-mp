@@ -1,0 +1,23 @@
+CREATE TABLE `mp_msg_publish_tbl` (
+  `id` varchar(64) NOT NULL COMMENT '微信公众号消息发布表id',
+  `app_id` varchar(120) NOT NULL COMMENT '微信公众号appId',
+  `publish_cycle` varchar(64) NOT NULL COMMENT '周期(self单次,day每天,week每周,month每月,year每年)',
+  `publish_time` varchar(64) DEFAULT NULL COMMENT '推送具体时间',
+  `publish_date` varchar(64) DEFAULT NULL COMMENT '推送时间段',
+`publish_limit` int(11) NOT NULL DEFAULT '0' COMMENT '推送次数限制',
+`publish_people` tinyint(5) NOT NULL DEFAULT '0' COMMENT '推送人群（0 向自定义人群推送 1 向订阅人群推送）',
+`operate_type` tinyint(5) NOT NULL DEFAULT '0' COMMENT '操作类型(0 手动触发 1定时触发)',
+`template_id` varchar(120) NOT NULL COMMENT '模板消息id',
+`data` text NOT NULL COMMENT '模板消息内容',
+`url` varchar(255) DEFAULT NULL COMMENT '网站跳转地址',
+`miniapp_appid` varchar(120) DEFAULT NULL COMMENT '关联小程序appid',
+`miniapp_page` varchar(255) DEFAULT NULL COMMENT '关联小程序跳转地址',
+`user_miniapp_path` tinyint(10) NOT NULL DEFAULT '0' COMMENT '是否使用小程序跳转(0 否 1 是)',
+`remark` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '描述',
+`create_user` varchar(64) DEFAULT NULL COMMENT '创建人',
+`create_time` datetime NOT NULL COMMENT '创建时间',
+`modify_user` varchar(64) DEFAULT NULL COMMENT '更新人',
+`modify_time` datetime NOT NULL COMMENT '更新时间',
+`status` tinyint(5) NOT NULL DEFAULT '0' COMMENT '状态(0 有效,1 无效)',
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='微信公众号消息发布表';

@@ -11,5 +11,5 @@ public class MpTemplateMiniProgramVo {
     @ApiModelProperty(value = "小程序跳转页面")
     String pagePath;
     @ApiModelProperty(value = "是否跳转页面")
-    boolean usePath = false;
+    Boolean usePath = false;
 }

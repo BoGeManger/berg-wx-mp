@@ -43,7 +43,8 @@ public class MenuServiceImpl implements MenuService {
         return menuTblDao.page(input,()->{
             LambdaQueryWrapper<MenuTbl> query = new LambdaQueryWrapper<MenuTbl>()
                     .eq(MenuTbl::getAppId,input.getAppId())
-                    .like(StringUtils.isNotBlank(input.getRemark()),MenuTbl::getRemark,input.getRemark());
+                    .like(StringUtils.isNotBlank(input.getRemark()),MenuTbl::getRemark,input.getRemark())
+                    .orderByDesc(MenuTbl::getCreateTime);
             return menuTblDao.list(query,MenuVo.class);
         });
     }
