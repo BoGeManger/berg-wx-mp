@@ -26,9 +26,30 @@
         <result column="status" property="status" />
     </resultMap>
 
+    <resultMap id="MsgPublishVoMap" type="com.berg.vo.mp.MsgPublishVo">
+        <result column="id" property="id" jdbcType="VARCHAR" />
+        <result column="publish_cycle" property="publishCycle" jdbcType="VARCHAR" />
+        <result column="publish_time" property="publishTime" jdbcType="VARCHAR" />
+        <result column="publish_date" property="publishDate" jdbcType="VARCHAR" />
+        <result column="publish_limit" property="publishLimit" jdbcType="INTEGER" />
+        <result column="publish_people" property="publishPeople" jdbcType="INTEGER" />
+        <result column="operate_type" property="operateType" jdbcType="INTEGER" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+    </resultMap>
+
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, app_id, publish_cycle, publish_time, publish_date, publish_limit, publish_people, operate_type, template_id, data, url, miniapp_appid, miniapp_page, user_miniapp_path, remark, create_user, create_time, modify_user, modify_time, status
     </sql>
+
+    <select id="getMsgSubscribePublishPage" resultMap="MsgPublishVoMap">
+        SELECT a.* FROM mp_msg_publish_tbl a JOIN mp_msg_subscribe_tbl b ON a.id=b.publish_id
+         WHERE a.status=0 AND b.status=0 AND a.app_id=#{appId} AND b.open_id=#{openId}
+    </select>
 
 </mapper>

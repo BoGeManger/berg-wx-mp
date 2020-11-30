@@ -30,9 +30,14 @@ public class TemplateMsgPublishJob implements Job {
     @Autowired
     MsgSubscribeTblDao msgSubscribeTblDao;
 
+    /**
+     * 定时执行订阅模板消息任务(每秒一次)
+     * @param jobExecutionContext
+     * @throws JobExecutionException
+     */
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        log.info(String.format("订阅模板消息任务TemplateMsgPublishJob 时间：%s",LocalDateTime.now()));
+        log.info(String.format("模板消息任务TemplateMsgPublishJob 时间：%s",LocalDateTime.now()));
         LocalDateTime now = LocalDateTime.now();
         //发布查询
         LambdaQueryWrapper publishQuery = new LambdaQueryWrapper<MsgPublishTbl>()

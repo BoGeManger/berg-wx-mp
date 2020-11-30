@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/templateMsgSubscribe")
-@Api(tags = "微信公众号模板消息")
+@Api(tags = "微信公众号模板消息订阅")
 public class TemplateMsgSubscribeController extends BaseController {
 
     @Autowired

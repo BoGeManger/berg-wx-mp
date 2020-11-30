@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/templateMsgPublish")
-@Api(tags = "微信公众号模板消息")
+@Api(tags = "微信公众号模板消息发布")
 public class TemplateMsgPublishController extends BaseController {
 
     @Autowired
