@@ -6,7 +6,6 @@
     <resultMap id="BaseResultMap" type="com.berg.dao.system.mp.entity.QrcodeTbl">
         <id column="id" property="id" />
         <result column="app_id" property="appId" />
-        <result column="open_id" property="openId" />
         <result column="scene_str" property="sceneStr" />
         <result column="expire_seconds" property="expireSeconds" />
         <result column="ticket" property="ticket" />
@@ -18,7 +17,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, app_id, open_id, scene_str, expire_seconds, ticket, url, remark, type, create_time
+        id, app_id, scene_str, expire_seconds, ticket, url, remark, type, create_time
     </sql>
 
 </mapper>

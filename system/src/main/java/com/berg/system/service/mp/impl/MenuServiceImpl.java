@@ -3,6 +3,7 @@ import java.time.LocalDateTime;
 
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.berg.dao.base.DSTransactional;
 import com.berg.dao.page.PageInfo;
 import com.berg.dao.system.mp.entity.MenuTbl;
 import com.berg.dao.system.mp.service.MenuTblDao;
@@ -22,7 +23,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MenuServiceImpl implements MenuService {
@@ -84,8 +84,8 @@ public class MenuServiceImpl implements MenuService {
      * 新增公众号菜单
      * @param input
      */
+    @DSTransactional
     @Override
-    @Transactional
     public void create(MpCreateMenuInVo input){
         String menu = JSONUtil.toJsonStr(input.getMenu());
         MenuTbl menuTbl = new MenuTbl();

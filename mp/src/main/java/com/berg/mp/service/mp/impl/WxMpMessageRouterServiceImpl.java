@@ -26,7 +26,7 @@ public class WxMpMessageRouterServiceImpl implements WxMpMessageRouterService {
     @Autowired
     MenuHandler menuHandler;
     @Autowired
-    NullHandler nullHandler;
+    MenuClickHandler menuClickHandler;
     @Autowired
     SubscribeHandler subscribeHandler;
     @Autowired
@@ -55,7 +55,7 @@ public class WxMpMessageRouterServiceImpl implements WxMpMessageRouterService {
         // 自定义菜单事件
         newRouter.rule().async(false).msgType(EVENT).event(WxConsts.EventType.CLICK).handler(menuHandler).end();
         // 点击菜单连接事件
-        newRouter.rule().async(false).msgType(EVENT).event(WxConsts.EventType.VIEW).handler(nullHandler).end();
+        newRouter.rule().async(false).msgType(EVENT).event(WxConsts.EventType.VIEW).handler(menuClickHandler).end();
         // 关注事件
         newRouter.rule().async(false).msgType(EVENT).event(SUBSCRIBE).handler(subscribeHandler).end();
         // 取消关注事件

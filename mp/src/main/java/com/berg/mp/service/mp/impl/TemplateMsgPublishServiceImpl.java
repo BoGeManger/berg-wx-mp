@@ -46,7 +46,7 @@ public class TemplateMsgPublishServiceImpl extends BaseService implements Templa
     public PageInfo<MsgPublishVo> getMsgSubscribePublishPage(PageInVo input){
         return msgPublishTblDao.page(input,()->{
             String openId = jWTUtil.getOpenId();
-            return msgPublishTblDao.getMapper().getMsgSubscribePublishPage(getAppId(),openId);
+            return msgPublishTblDao.getMapper().listMsgSubscribePublish(getAppId(),openId);
         });
     }
 }

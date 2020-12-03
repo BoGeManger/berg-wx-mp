@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.berg.dao.system.mp.mapper.ActivityQrcodeRecordTblMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.berg.dao.system.mp.entity.ActivityQrcodeRecordTbl">
+        <id column="id" property="id"/>
+        <result column="app_id" property="appId"/>
+        <result column="open_id" property="openId"/>
+        <result column="code" property="code"/>
+        <result column="event" property="event"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <resultMap id="ActivityQRCodeRecordStatisticsVoMap" type="com.berg.vo.mp.ActivityQRCodeRecordStatisticsVo">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="total" property="total" jdbcType="INTEGER"/>
+        <result column="scan_num" property="scanNum" jdbcType="INTEGER"/>
+        <result column="subscribe_num" property="subscribeNum" jdbcType="INTEGER"/>
+        <result column="unsubscribe_num" property="unsubscribeNum" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, app_id, open_id, code, event, create_time
+    </sql>
+
+    <select id="listActivityRecordStatistics" resultMap="ActivityQRCodeRecordStatisticsVoMap">
+      select a.id,a.name,totalview.num as total,saanview.num as scan_num,subscribeview.num as subscribe_num
+      ,saanview.num-subscribeview.num as unsubscribe_num from mp_activity_qrcode_tbl a
+      left join (select count(open_id) as num,`code` from mp_activity_qrcode_record_tbl where `event`="subscribe"
+      and `code` = '' group by `code`,`event`) as subscribeview on a.`code` = subscribeview.`code`
+      left join (select count(open_id) as num,`code` from mp_activity_qrcode_record_tbl where `event`="saan"
+      and `code` = '' group by `code`,`event`) as saanview on a.`code` = saanview.`code`
+      left join (select count(open_id) as num,`code` from mp_activity_qrcode_record_tbl group by `code`) as totalview on a.`code` = totalview.`code`
+      <trim prefix="where" prefixOverrides="and|or">
+          AND a.app_id = #{appId}
+          <if test="id!=null and id!=''">
+            AND a.name LIKE CONCAT('%', #{name}, '%')
+          </if>
+       </trim>
+       ORDER BY a.create_time DESC
+    </select>
+
+</mapper>

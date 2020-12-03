@@ -1,5 +1,6 @@
 package com.berg.dao.system.mp.service.impl;
 
+import com.berg.dao.constant.DataSource;
 import com.berg.dao.system.mp.entity.MenuTbl;
 import com.berg.dao.system.mp.mapper.MenuTblMapper;
 import com.berg.dao.system.mp.service.MenuTblDao;
@@ -16,13 +17,13 @@ import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
  * @author 
  * @since 2020-11-20
  */
-@DS("system")
+@DS(DataSource.SYSTEM)
 @Repository("system.MenuTblDaoImpl")
 public class MenuTblDaoImpl extends ServiceImpl<MenuTblMapper, MenuTbl> implements MenuTblDao {
 
     @Override
     public MenuTblMapper getMapper(){
-      DynamicDataSourceContextHolder.push("system");
+      DynamicDataSourceContextHolder.push(DataSource.SYSTEM);
       return this.getBaseMapper();
     }
 }

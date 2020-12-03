@@ -17,5 +17,5 @@ import java.util.List;
  */
 public interface MsgPublishTblMapper extends BaseMapper<MsgPublishTbl> {
 
-    List<MsgPublishVo> getMsgSubscribePublishPage(@Param(value = "appId") String appId, @Param(value = "openId") String openId);
+    List<MsgPublishVo> listMsgSubscribePublish(@Param(value = "appId") String appId, @Param(value = "openId") String openId);
 }

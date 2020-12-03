@@ -1,11 +1,15 @@
 package com.berg.mp.handler;
 
+import com.berg.mp.service.mp.ActivityQRCodeService;
+import com.berg.mp.service.mp.KeysReplyService;
+import com.berg.mp.service.mp.impl.UserAsyncTask;
 import me.chanjar.weixin.common.error.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpMessageHandler;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -13,49 +17,28 @@ import java.util.Map;
 @Component
 public class SubscribeHandler implements WxMpMessageHandler {
 
+    @Autowired
+    UserAsyncTask userAsyncTask;
+
+    @Autowired
+    KeysReplyService keysReplyService;
+    @Autowired
+    ActivityQRCodeService activityQRCodeService;
+
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMpXmlMessage, Map<String, Object> map,
                                     WxMpService wxMpService, WxSessionManager wxSessionManager) throws WxErrorException {
-//        log.info("新关注用户 OPENID: " + wxMpXmlMessage.getFromUser());
-//        // 获取微信用户基本信息
-//        try {
-//            WxMpUser userWxInfo = wxMpService.getUserService()
-//                .userInfo(wxMpXmlMessage.getFromUser(), null);
-//            if (userWxInfo != null) {
-                //TODO 可以添加关注用户到本地数据库
-//            }
-//        } catch (WxErrorException e) {
-//            if (e.getError().getErrorCode() == 48001) {
-//                log.info("该公众号没有获取用户信息权限！");
-//            }
-//        }
-//        WxMpXmlOutMessage responseResult = null;
-//        try {
-//            responseResult = this.handleSpecial(wxMpXmlMessage);
-//        } catch (Exception e) {
-//            log.error(e.getMessage(), e);
-//        }
-//
-//        if (responseResult != null) {
-//            return responseResult;
-//        }
-//
-//        try {
-//            return WxMpXmlOutMessage.TEXT().content("感谢关注")
-//                    .fromUser(wxMpXmlMessage.getToUser()).toUser(wxMpXmlMessage.getFromUser())
-//                    .build();
-//        } catch (Exception e) {
-//            log.error(e.getMessage(), e);
-//        }
-        return null;
+        WxMpXmlOutMessage wxMpXmlOutMessage = null;
+        String appId = wxMpXmlMessage.getAuthorizeAppId();
+        //关注用户记录
+        userAsyncTask.addOrUpdateMaBindBySubscribe(appId,wxMpXmlMessage.getFromUser(),wxMpXmlMessage.getScene());
+        if(wxMpXmlMessage.getEventKey().contains("qrscene_")){//扫码关注
+            wxMpXmlOutMessage = activityQRCodeService.sendByEvent(wxMpXmlMessage,appId,"subscribe");
+        }else {//普通关注
+            //查询关注关键字并回复
+            wxMpXmlOutMessage = keysReplyService.sendByKeyReply(wxMpXmlMessage,appId,"关注");
+        }
+        return wxMpXmlOutMessage;
     }
-
-    /**
-     * 处理特殊请求，比如如果是扫码进来的，可以做相应处理
-     */
-//    WxMpXmlOutMessage handleSpecial(WxMpXmlMessage wxMessage) throws Exception {
-          //TODO
-//        return null;
-//    }
 
 }

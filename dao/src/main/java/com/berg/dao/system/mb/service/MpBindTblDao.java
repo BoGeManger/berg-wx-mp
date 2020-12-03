@@ -10,7 +10,7 @@ import com.berg.dao.system.mb.mapper.MpBindTblMapper;
  * </p>
  *
  * @author 
- * @since 2020-11-19
+ * @since 2020-12-03
  */
 public interface MpBindTblDao extends IService<MpBindTbl> {
    MpBindTblMapper getMapper();

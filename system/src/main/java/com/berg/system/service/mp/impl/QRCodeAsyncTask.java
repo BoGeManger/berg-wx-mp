@@ -1,4 +1,4 @@
-package com.berg.mp.service.mp.impl;
+package com.berg.system.service.mp.impl;
 import java.time.LocalDateTime;
 
 import com.berg.dao.system.mp.entity.QrcodeTbl;
@@ -16,7 +16,6 @@ public class QRCodeAsyncTask {
     /**
      * 新增二维码记录
      * @param appId
-     * @param openId
      * @param sceneStr
      * @param expireSeconds
      * @param ticket
@@ -25,10 +24,9 @@ public class QRCodeAsyncTask {
      * @param type
      */
     @Async
-    public void addQRCode(String appId,String openId,String sceneStr,Integer expireSeconds,String ticket,String url,String remark,Integer type){
+    public void addQRCode(String appId,String sceneStr,Integer expireSeconds,String ticket,String url,String remark,Integer type){
         QrcodeTbl qrcodeTbl = new QrcodeTbl();
         qrcodeTbl.setAppId(appId);
-        qrcodeTbl.setOpenId(openId);
         qrcodeTbl.setSceneStr(sceneStr);
         qrcodeTbl.setExpireSeconds(expireSeconds);
         qrcodeTbl.setTicket(ticket);

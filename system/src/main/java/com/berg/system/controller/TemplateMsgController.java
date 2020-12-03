@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/template")
-@Api(tags = "微信公众号模板消息")
+@Api(tags = "微信公众号模板消息管理")
 public class TemplateMsgController extends BaseController {
 
     @Autowired

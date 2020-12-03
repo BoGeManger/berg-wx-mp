@@ -14,10 +14,11 @@ CREATE TABLE `mb_mp_bind_tbl` (
 `subscribe` tinyint(2) DEFAULT NULL COMMENT '是否已关注(0 否 1 是)',
 `subscribe_time` datetime DEFAULT NULL COMMENT '关注时间',
 `subscribe_scene` varchar(120) DEFAULT NULL COMMENT '返回用户关注的渠道来源(ADD_SCENE_SEARCH 公众号搜索，ADD_SCENE_ACCOUNT_MIGRATION 公众号迁移，ADD_SCENE_PROFILE_CARD 名片分享，ADD_SCENE_QR_CODE 扫描二维码，ADD_SCENEPROFILE LINK 图文页内名称点击，ADD_SCENE_PROFILE_ITEM 图文页右上角菜单，ADD_SCENE_PAID 支付后关注，ADD_SCENE_OTHERS 其他)',
+`unsubscribe_time` datetime DEFAULT NULL COMMENT '取消关注时间',
 `tag_ids` varchar(1000) DEFAULT NULL COMMENT '标签信息,json数组',
 `qr_scene` varchar(120) DEFAULT NULL COMMENT '二维码扫码场景（开发者自定义）',
 `qr_scene_str` varchar(255) DEFAULT NULL COMMENT '二维码扫码场景描述（开发者自定义）',
 `create_time` datetime NOT NULL COMMENT '创建时间',
 `modify_time` datetime NOT NULL COMMENT '更新时间',
 PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='会员公众号绑定表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='会员公众号绑定表';

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/network")
-@Api(tags = "微信公众号网络")
+@Api(tags = "微信公众号网络管理")
 public class NetworkController extends BaseController {
 
     @Autowired

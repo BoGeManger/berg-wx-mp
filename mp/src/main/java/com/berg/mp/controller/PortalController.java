@@ -4,6 +4,7 @@ import com.berg.base.BaseController;
 import com.berg.message.Result;
 import com.berg.mp.service.mp.PortalService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,18 +16,20 @@ public class PortalController extends BaseController {
     @Autowired
     PortalService portalService;
 
-    @GetMapping(value = "get",produces = "text/plain;charset=utf-8")
-    public Result<Boolean> get(@PathVariable String appId,
+    @ApiOperation(value = "接收微信公众号认证消息")
+    @GetMapping(value = "authentication",produces = "text/plain;charset=utf-8")
+    public Result<Boolean> authentication(@PathVariable String appId,
                                @RequestParam(name = "signature", required = false) String signature,
                                @RequestParam(name = "timestamp", required = false) String timestamp,
                                @RequestParam(name = "nonce", required = false) String nonce,
                                @RequestParam(name = "echostr", required = false) String echostr){
-        portalService.get(appId,signature,timestamp,nonce,echostr);
+        portalService.authentication(appId,signature,timestamp,nonce,echostr);
         return getSuccessResult("请求成功",true);
     }
 
-    @PostMapping(value = "post",produces = "application/xml; charset=UTF-8")
-    public Result<Boolean> post(@PathVariable String appId,
+    @ApiOperation(value = "接收微信公众号消息")
+    @PostMapping(value = "handler",produces = "application/xml; charset=UTF-8")
+    public Result<Boolean> handler(@PathVariable String appId,
                        @RequestBody String requestBody,
                        @RequestParam("signature") String signature,
                        @RequestParam("timestamp") String timestamp,
@@ -34,7 +37,7 @@ public class PortalController extends BaseController {
                        @RequestParam("openid") String openId,
                        @RequestParam(name = "encrypt_type", required = false) String encType,
                        @RequestParam(name = "msg_signature", required = false) String msgSignature) {
-        portalService.post(appId,signature,timestamp,nonce,openId,encType,msgSignature,requestBody);
+        portalService.handler(appId,signature,timestamp,nonce,openId,encType,msgSignature,requestBody);
         return getSuccessResult("请求成功",true);
     }
 }

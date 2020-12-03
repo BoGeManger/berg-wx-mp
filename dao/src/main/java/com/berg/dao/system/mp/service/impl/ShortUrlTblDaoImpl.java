@@ -1,5 +1,6 @@
 package com.berg.dao.system.mp.service.impl;
 
+import com.berg.dao.constant.DataSource;
 import com.berg.dao.system.mp.entity.ShortUrlTbl;
 import com.berg.dao.system.mp.mapper.ShortUrlTblMapper;
 import com.berg.dao.system.mp.service.ShortUrlTblDao;
@@ -16,13 +17,13 @@ import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
  * @author 
  * @since 2020-11-20
  */
-@DS("system")
+@DS(DataSource.SYSTEM)
 @Repository("system.ShortUrlTblDaoImpl")
 public class ShortUrlTblDaoImpl extends ServiceImpl<ShortUrlTblMapper, ShortUrlTbl> implements ShortUrlTblDao {
 
     @Override
     public ShortUrlTblMapper getMapper(){
-      DynamicDataSourceContextHolder.push("system");
+      DynamicDataSourceContextHolder.push(DataSource.SYSTEM);
       return this.getBaseMapper();
     }
 }

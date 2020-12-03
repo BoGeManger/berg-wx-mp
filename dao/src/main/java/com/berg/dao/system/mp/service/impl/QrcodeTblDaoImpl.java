@@ -1,5 +1,6 @@
 package com.berg.dao.system.mp.service.impl;
 
+import com.berg.dao.constant.DataSource;
 import com.berg.dao.system.mp.entity.QrcodeTbl;
 import com.berg.dao.system.mp.mapper.QrcodeTblMapper;
 import com.berg.dao.system.mp.service.QrcodeTblDao;
@@ -16,13 +17,13 @@ import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
  * @author 
  * @since 2020-11-26
  */
-@DS("system")
+@DS(DataSource.SYSTEM)
 @Repository("system.QrcodeTblDaoImpl")
 public class QrcodeTblDaoImpl extends ServiceImpl<QrcodeTblMapper, QrcodeTbl> implements QrcodeTblDao {
 
     @Override
     public QrcodeTblMapper getMapper(){
-      DynamicDataSourceContextHolder.push("system");
+      DynamicDataSourceContextHolder.push(DataSource.SYSTEM);
       return this.getBaseMapper();
     }
 }

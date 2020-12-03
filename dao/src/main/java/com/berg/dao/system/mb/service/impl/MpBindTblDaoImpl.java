@@ -5,6 +5,7 @@ import com.berg.dao.system.mb.mapper.MpBindTblMapper;
 import com.berg.dao.system.mb.service.MpBindTblDao;
 import com.berg.dao.base.ServiceImpl;
 import org.springframework.stereotype.Repository;
+import com.berg.dao.constant.DataSource;
 import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 
@@ -14,15 +15,15 @@ import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
  * </p>
  *
  * @author 
- * @since 2020-11-19
+ * @since 2020-12-03
  */
-@DS("system")
+@DS(DataSource.SYSTEM)
 @Repository("system.MpBindTblDaoImpl")
 public class MpBindTblDaoImpl extends ServiceImpl<MpBindTblMapper, MpBindTbl> implements MpBindTblDao {
 
     @Override
     public MpBindTblMapper getMapper(){
-      DynamicDataSourceContextHolder.push("system");
+      DynamicDataSourceContextHolder.push(DataSource.SYSTEM);
       return this.getBaseMapper();
     }
 }

@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/mpapp")
-@Api(tags = "微信公众号应用")
+@Api(tags = "微信公众号应用管理")
 public class MpAppController extends BaseController {
 
     @Autowired

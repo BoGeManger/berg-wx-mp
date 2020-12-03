@@ -8,6 +8,9 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class MpQRCodeCreateInVo {
 
+    @NotBlank(message = "微信公众号appId不能为空")
+    @ApiModelProperty(value = "微信公众号appId")
+    String appId;
     @NotBlank(message = "场景值ID不能为空")
     @ApiModelProperty(value = "场景值ID（字符串形式的ID），字符串类型，长度限制为1到64，可使用活动编码")
     String sceneStr;

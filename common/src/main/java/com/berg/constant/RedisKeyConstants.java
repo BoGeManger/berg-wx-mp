@@ -23,6 +23,10 @@ public class RedisKeyConstants {
 		public static final String MP_VERIFY_CODE = "mp_verify_code_%s_%s";
 		//微信公众号模板消息列表(appId)
 		public static final String MP_TEMPLATE_LIST = "mp_template_list_%s";
+		//微信公众号关键字回复Set(appId,keyContent)
+		public static final String MP_KEYS_REPLY_SET= "mp_keys_reply_set_%s_%s";
+		//微信公众号活动二维码事件Set(appId,code.event)
+		public static final String MP_ACTIVITY_QRCODE_EVENT_SET ="mp_activity_qrcode_event_set_%s_%s_%s";
 	}
 
 }

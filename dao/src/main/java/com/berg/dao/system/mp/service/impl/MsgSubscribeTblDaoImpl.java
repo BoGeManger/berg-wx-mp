@@ -1,5 +1,6 @@
 package com.berg.dao.system.mp.service.impl;
 
+import com.berg.dao.constant.DataSource;
 import com.berg.dao.system.mp.entity.MsgSubscribeTbl;
 import com.berg.dao.system.mp.mapper.MsgSubscribeTblMapper;
 import com.berg.dao.system.mp.service.MsgSubscribeTblDao;
@@ -16,13 +17,13 @@ import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
  * @author 
  * @since 2020-11-26
  */
-@DS("system")
+@DS(DataSource.SYSTEM)
 @Repository("system.MsgSubscribeTblDaoImpl")
 public class MsgSubscribeTblDaoImpl extends ServiceImpl<MsgSubscribeTblMapper, MsgSubscribeTbl> implements MsgSubscribeTblDao {
 
     @Override
     public MsgSubscribeTblMapper getMapper(){
-      DynamicDataSourceContextHolder.push("system");
+      DynamicDataSourceContextHolder.push(DataSource.SYSTEM);
       return this.getBaseMapper();
     }
 }

@@ -2,6 +2,7 @@ package com.berg.system.service.mp.impl;
 
 import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSONArray;
+import com.berg.dao.base.DSTransactional;
 import com.berg.dao.system.mp.entity.MsgPublishTbl;
 import com.berg.dao.system.mp.entity.MsgSubscribeTbl;
 import com.berg.dao.system.mp.service.MsgSubscribeTblDao;
@@ -12,7 +13,6 @@ import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class TemplateMsgPublishAsyncTask {
      * @param msgPublishTbl
      * @param msgSubscribeTbl
      */
-    @Transactional
+    @DSTransactional
     public void sendAsync(MsgPublishTbl msgPublishTbl, MsgSubscribeTbl msgSubscribeTbl){
         send(msgPublishTbl,msgSubscribeTbl);
     }
@@ -43,7 +43,7 @@ public class TemplateMsgPublishAsyncTask {
      * @param msgPublishTbl
      * @param msgSubscribeTbl
      */
-    @Transactional
+    @DSTransactional
     public void send(MsgPublishTbl msgPublishTbl, MsgSubscribeTbl msgSubscribeTbl){
         Boolean isExecute = checkExecute(msgPublishTbl,msgSubscribeTbl);
         //未执行状态发送消息
@@ -76,7 +76,7 @@ public class TemplateMsgPublishAsyncTask {
      */
     Boolean checkExecute(MsgPublishTbl msgPublishTbl, MsgSubscribeTbl msgSubscribeTbl){
         Boolean isExecute = true;
-        if(msgPublishTbl.getOperateType().equals("system")){
+        if(msgPublishTbl.getOperateType()== 1){
             switch (msgPublishTbl.getPublishCycle()){
                 case "self"://单次
                     isExecute =checkExecuteSelf(msgPublishTbl,msgSubscribeTbl);

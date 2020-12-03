@@ -21,7 +21,7 @@ public class LoginAsyncTask {
     StringRedisTemplate stringRedisTemplate;
 
     @Autowired
-    MpBindTblDao maBindTblDao;
+    MpBindTblDao mpBindTblDao;
 
     /**
      * 新增绑定信息
@@ -39,7 +39,7 @@ public class LoginAsyncTask {
         mpBindTbl.setOpenId(openId);
         mpBindTbl.setCreateTime(now);
         mpBindTbl.setModifyTime(now);
-        maBindTblDao.save(mpBindTbl);
+        mpBindTblDao.save(mpBindTbl);
     }
 
     /**
@@ -60,7 +60,7 @@ public class LoginAsyncTask {
         MpBindTbl mpBindTbl = new MpBindTbl();
         mpBindTbl.setUnionId(unionId);
         mpBindTbl.setModifyTime(LocalDateTime.now());
-        maBindTblDao.update(mpBindTbl, query);
+        mpBindTblDao.update(mpBindTbl, query);
     }
 
     /**

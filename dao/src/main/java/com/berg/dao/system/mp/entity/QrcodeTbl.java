@@ -37,11 +37,6 @@ public class QrcodeTbl implements Serializable {
     private String appId;
 
     /**
-     * 微信公众号openId
-     */
-    private String openId;
-
-    /**
      * 场景id
      */
     private String sceneStr;

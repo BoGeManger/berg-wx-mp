@@ -15,7 +15,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class PortalServiceImpl implements PortalService {
 
-    public void get(String appId,String signature,String timestamp,String nonce,String echostr) {
+    @Override
+    public void authentication(String appId,String signature,String timestamp,String nonce,String echostr) {
 //        if (StringUtils.isAnyBlank(signature, timestamp, nonce, echostr)) {
 //            throw new ParamException("请求参数非法，请核实!");
 //        }
@@ -32,7 +33,8 @@ public class PortalServiceImpl implements PortalService {
 //        }
     }
 
-    public void post(String appId,String signature,String timestamp,String nonce,String openid,String encType,String msgSignature,String requestBody) {
+    @Override
+    public void handler(String appId,String signature,String timestamp,String nonce,String openid,String encType,String msgSignature,String requestBody) {
 //        try{
 //            WxMpService wxMpService = WxMpUtil.getService(appId);
 //            if (!wxMpService.switchover(appId)) {

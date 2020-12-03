@@ -19,7 +19,7 @@ public class KefuServiceImpl extends BaseService implements KefuService {
     public Boolean sendText(MpKefuSendTextInVo input){
         Boolean flag = true;
         try{
-            WxMpKefuMessage message = WxMpKefuMessage.TEXT().toUser(input.getToUser()).content(input.getContent()).build();;
+            WxMpKefuMessage message = WxMpKefuMessage.TEXT().content(input.getContent()).toUser(input.getToUser()).build();;
             WxMpUtil.getService(getAppId()).getKefuService().sendKefuMessage(message);
         }catch (Exception ex){
             throw new FailException("调用公众号发送客服文本消息接口sendText失败:"+ex.getMessage());

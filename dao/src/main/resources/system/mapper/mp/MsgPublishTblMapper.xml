@@ -47,7 +47,7 @@
         id, app_id, publish_cycle, publish_time, publish_date, publish_limit, publish_people, operate_type, template_id, data, url, miniapp_appid, miniapp_page, user_miniapp_path, remark, create_user, create_time, modify_user, modify_time, status
     </sql>
 
-    <select id="getMsgSubscribePublishPage" resultMap="MsgPublishVoMap">
+    <select id="listMsgSubscribePublish" resultMap="MsgPublishVoMap">
         SELECT a.* FROM mp_msg_publish_tbl a JOIN mp_msg_subscribe_tbl b ON a.id=b.publish_id
          WHERE a.status=0 AND b.status=0 AND a.app_id=#{appId} AND b.open_id=#{openId}
     </select>

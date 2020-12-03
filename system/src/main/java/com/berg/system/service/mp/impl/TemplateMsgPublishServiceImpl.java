@@ -3,6 +3,7 @@ package com.berg.system.service.mp.impl;
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.berg.dao.base.DSTransactional;
 import com.berg.dao.page.PageInfo;
 import com.berg.dao.system.mp.entity.MsgPublishTbl;
 import com.berg.dao.system.mp.entity.MsgSubscribeTbl;
@@ -18,7 +19,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -118,8 +118,8 @@ public class TemplateMsgPublishServiceImpl implements TemplateMsgPublishService 
      * 立即发送消息
      * @param id
      */
+    @DSTransactional
     @Override
-    @Transactional
     public void sendMessage(String id) {
         String operator = jwtUtil.getUsername();
         LocalDateTime now = LocalDateTime.now();

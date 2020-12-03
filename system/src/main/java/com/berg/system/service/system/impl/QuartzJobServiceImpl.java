@@ -1,8 +1,8 @@
 package com.berg.system.service.system.impl;
 
-import com.baomidou.dynamic.datasource.annotation.DS;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.berg.dao.base.DSTransactional;
 import com.berg.dao.page.PageInfo;
 import com.berg.dao.system.sys.entity.QuartzJobTbl;
 import com.berg.dao.system.sys.service.QuartzJobTblDao;
@@ -19,7 +19,6 @@ import org.quartz.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -76,9 +75,8 @@ public class QuartzJobServiceImpl implements QuartzJobService {
      * @param input
      * @return
      */
+    @DSTransactional
     @Override
-    @Transactional
-    @DS("system")
     public Integer addJob(JobEditVo input){
         LambdaQueryWrapper queryName = new LambdaQueryWrapper<QuartzJobTbl>()
                 .eq(QuartzJobTbl::getName,input.getName())
@@ -140,9 +138,8 @@ public class QuartzJobServiceImpl implements QuartzJobService {
      * 删除定时任务
      * @param id
      */
+    @DSTransactional
     @Override
-    @Transactional
-    @DS("system")
     public void delJob(Integer id){
         String operator = jWTUtil.getUsername();
         LocalDateTime now = LocalDateTime.now();
@@ -174,9 +171,8 @@ public class QuartzJobServiceImpl implements QuartzJobService {
      * 暂停定时任务
      * @param id
      */
+    @DSTransactional
     @Override
-    @Transactional
-    @DS("system")
     public void pauseJob(Integer id){
         String operator = jWTUtil.getUsername();
         LocalDateTime now = LocalDateTime.now();
@@ -202,9 +198,8 @@ public class QuartzJobServiceImpl implements QuartzJobService {
      * 启动定时任务
      * @param id
      */
+    @DSTransactional
     @Override
-    @Transactional
-    @DS("system")
     public void resumeJob(Integer id){
         String operator = jWTUtil.getUsername();
         LocalDateTime now = LocalDateTime.now();

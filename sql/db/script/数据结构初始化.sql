@@ -11,7 +11,7 @@ Target Server Type    : MySQL
 Target Server Version : 50710
 File Encoding         : 65001
 
-Date: 30/11/2020 16:16:16
+Date: 03/12/2020 17:23:22
 */
 
 SET NAMES utf8mb4;
@@ -49,6 +49,7 @@ CREATE TABLE `mb_mp_bind_tbl`  (
 `subscribe` tinyint(2) NULL DEFAULT NULL COMMENT '是否已关注(0 否 1 是)',
 `subscribe_time` datetime(0) NULL DEFAULT NULL COMMENT '关注时间',
 `subscribe_scene` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '返回用户关注的渠道来源(ADD_SCENE_SEARCH 公众号搜索，ADD_SCENE_ACCOUNT_MIGRATION 公众号迁移，ADD_SCENE_PROFILE_CARD 名片分享，ADD_SCENE_QR_CODE 扫描二维码，ADD_SCENEPROFILE LINK 图文页内名称点击，ADD_SCENE_PROFILE_ITEM 图文页右上角菜单，ADD_SCENE_PAID 支付后关注，ADD_SCENE_OTHERS 其他)',
+`unsubscribe_time` datetime(0) NULL DEFAULT NULL COMMENT '取消关注时间',
 `tag_ids` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '标签信息,json数组',
 `qr_scene` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '二维码扫码场景（开发者自定义）',
 `qr_scene_str` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '二维码扫码场景描述（开发者自定义）',
@@ -56,6 +57,102 @@ CREATE TABLE `mb_mp_bind_tbl`  (
 `modify_time` datetime(0) NOT NULL COMMENT '更新时间',
 PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员公众号绑定表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for mp_activity_qrcode_event_tbl
+-- ----------------------------
+DROP TABLE IF EXISTS `mp_activity_qrcode_event_tbl`;
+CREATE TABLE `mp_activity_qrcode_event_tbl`  (
+`id` int(11) NOT NULL AUTO_INCREMENT COMMENT '微信公众号活动二维码事件表id',
+`app_id` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '微信公众号appId',
+`activity_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '活动id',
+`event` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '事件(scan 扫码 subscribe 关注)',
+`keys` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '绑定关键字',
+PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '微信公众号活动二维码事件表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for mp_activity_qrcode_record_tbl
+-- ----------------------------
+DROP TABLE IF EXISTS `mp_activity_qrcode_record_tbl`;
+CREATE TABLE `mp_activity_qrcode_record_tbl`  (
+`id` int(11) NOT NULL AUTO_INCREMENT COMMENT '微信公众号活动二维码表id',
+`app_id` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '微信公众号appId',
+`open_id` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '微信公众号openId',
+`code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '活动编码',
+`event` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '事件(scan 扫码 subscribe 关注)',
+`create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for mp_activity_qrcode_tbl
+-- ----------------------------
+DROP TABLE IF EXISTS `mp_activity_qrcode_tbl`;
+CREATE TABLE `mp_activity_qrcode_tbl`  (
+`id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '微信公众号活动二维码表id',
+`app_id` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '微信公众号appId',
+`name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '活动名称',
+`code` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '活动编码',
+`remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '活动描述',
+`create_time` datetime(0) NOT NULL COMMENT '创建时间',
+`create_user` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '创建用户',
+`modify_time` datetime(0) NOT NULL COMMENT '更新时间',
+`modify_user` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '修改用户',
+`del_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
+`del_user` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '删除用户',
+`isdel` tinyint(5) UNSIGNED ZEROFILL NOT NULL COMMENT '是否删除(0 否,1 是)',
+PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '微信公众号活动二维码表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for mp_keys_reply_tbl
+-- ----------------------------
+DROP TABLE IF EXISTS `mp_keys_reply_tbl`;
+CREATE TABLE `mp_keys_reply_tbl`  (
+`id` int(11) NOT NULL AUTO_INCREMENT COMMENT '微信公众号关键字自动回复表id',
+`app_id` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '微信公众号appId',
+`key_content` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '关键词内容',
+`reply_content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '回复内容',
+`reply_content_html` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '回复内容html格式',
+`media_id` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '素材媒体id',
+`media_type` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '素材文件类型(image 图片 voice 语音 video 视频 thumb 缩略图)',
+`url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '图文类型点击跳转链接',
+`pic_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '图文类型封面图片链接',
+`remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '图文类型描述',
+`reply_type` tinyint(5) NOT NULL COMMENT '回复内容类型(0 文本 1 图文 2 素材)',
+`create_time` datetime(0) NOT NULL COMMENT '创建时间',
+`create_user` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '创建用户',
+`modify_time` datetime(0) NOT NULL COMMENT '更新时间',
+`modify_user` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '修改用户',
+`del_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
+`del_user` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '删除用户',
+`isdel` tinyint(5) UNSIGNED ZEROFILL NOT NULL COMMENT '是否删除(0 否,1 是)',
+PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员公众号关键字自动回复表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for mp_media_tbl
+-- ----------------------------
+DROP TABLE IF EXISTS `mp_media_tbl`;
+CREATE TABLE `mp_media_tbl`  (
+`id` int(11) NOT NULL AUTO_INCREMENT COMMENT '微信公众号素材表id',
+`app_id` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '微信公众号appId',
+`media_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '素材媒体id',
+`url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '素材链接',
+`created_at` int(11) NULL DEFAULT NULL COMMENT '素材文件上传时间戳',
+`media_type` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '素材文件类型(image 图片 voice 语音 video 视频 thumb 缩略图)',
+`type` tinyint(5) NOT NULL DEFAULT 0 COMMENT '素材类型(0 临时素材 1 永久素材)',
+`remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '描述',
+`create_time` datetime(0) NOT NULL COMMENT '创建时间',
+`create_user` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '创建用户',
+`modify_time` datetime(0) NOT NULL COMMENT '更新时间',
+`modify_user` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '修改用户',
+`del_time` datetime(0) NULL DEFAULT NULL COMMENT '删除时间',
+`del_user` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '删除用户',
+`isdel` tinyint(5) UNSIGNED ZEROFILL NOT NULL COMMENT '是否删除(0 否,1 是)',
+PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '微信公众号素材表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for mp_menu_tbl
@@ -146,7 +243,6 @@ DROP TABLE IF EXISTS `mp_qrcode_tbl`;
 CREATE TABLE `mp_qrcode_tbl`  (
 `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '微信公众号二维码表id',
 `app_id` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '微信公众号appId',
-`open_id` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '微信公众号openId',
 `scene_str` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '场景id',
 `expire_seconds` int(11) NOT NULL DEFAULT 0 COMMENT '该二维码有效时间，以秒为单位。 最大不超过2592000（即30天）',
 `ticket` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '二维码ticket，凭借此ticket可以在有效时间内换取二维码',

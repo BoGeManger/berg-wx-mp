@@ -19,6 +19,7 @@
         <result column="subscribe" property="subscribe" />
         <result column="subscribe_time" property="subscribeTime" />
         <result column="subscribe_scene" property="subscribeScene" />
+        <result column="unsubscribe_time" property="unsubscribeTime" />
         <result column="tag_ids" property="tagIds" />
         <result column="qr_scene" property="qrScene" />
         <result column="qr_scene_str" property="qrSceneStr" />
@@ -28,7 +29,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, app_id, union_id, open_id, member_id, nickname, head_img_url, gender, country, province, city, privileges, subscribe, subscribe_time, subscribe_scene, tag_ids, qr_scene, qr_scene_str, create_time, modify_time
+        id, app_id, union_id, open_id, member_id, nickname, head_img_url, gender, country, province, city, privileges, subscribe, subscribe_time, subscribe_scene, unsubscribe_time, tag_ids, qr_scene, qr_scene_str, create_time, modify_time
     </sql>
 
 </mapper>
