@@ -1,8 +1,8 @@
 package com.berg.mp.service.mp.impl;
 
 import cn.hutool.json.JSONUtil;
-import com.berg.constant.RedisKeyConstants;
-import com.berg.exception.FailException;
+import com.berg.common.constant.RedisKeyConstants;
+import com.berg.common.exception.FailException;
 import com.berg.mp.service.base.BaseService;
 import com.berg.mp.service.mp.TemplateMsgService;
 import com.berg.vo.mp.MpTemplateVo;

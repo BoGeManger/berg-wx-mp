@@ -1,6 +1,6 @@
 package com.berg.system.service.mp.impl;
 
-import com.berg.exception.FailException;
+import com.berg.common.exception.FailException;
 import com.berg.system.service.mp.NetworkService;
 import com.berg.vo.mp.in.MpNetCheckInVo;
 import com.berg.vo.mp.out.MpNetCheckOutVo;

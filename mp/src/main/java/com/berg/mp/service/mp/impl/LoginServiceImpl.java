@@ -2,15 +2,14 @@ package com.berg.mp.service.mp.impl;
 import java.time.LocalDateTime;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.berg.constant.RedisKeyConstants;
+import com.berg.common.constant.RedisKeyConstants;
 import com.berg.dao.system.mb.entity.MpBindTbl;
 import com.berg.dao.system.mb.service.MpBindTblDao;
-import com.berg.exception.FailException;
+import com.berg.common.exception.FailException;
 import com.berg.mp.auth.JWTToken;
 import com.berg.mp.constant.MpConstants;
 import com.berg.mp.service.base.BaseService;
 import com.berg.mp.service.mp.LoginService;
-import com.berg.utils.DesUtil;
 import com.berg.vo.mp.MpUserInfoVo;
 import com.berg.vo.mp.in.MpGetAuthUrlInVo;
 import com.berg.vo.mp.in.MpLoginInVo;
@@ -205,7 +204,7 @@ public class LoginServiceImpl extends BaseService implements LoginService {
      * @return
      */
     JWTToken getJwt(MpLoginOutVo input,String oauthAccessToken) {
-        String token = DesUtil.encrypt(jWTUtil.sign(input.getAppId(),input.getOpenId(),input.getUnionId(), input.getMemberId()
+        String token = jWTUtil.DES.encryptHex(jWTUtil.sign(input.getAppId(),input.getOpenId(),input.getUnionId(), input.getMemberId()
                 ,input.getMaBindId(),input.getCreateTime(),input.getModifyTime(),input.getUserinfo(),oauthAccessToken));
         return new JWTToken(token, input.getAppId(),input.getOpenId(),mpConstants.getExpireTime());
     }

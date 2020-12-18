@@ -1,11 +1,11 @@
 package com.berg.system.service.mp.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.berg.constant.RedisKeyConstants;
+import com.berg.common.constant.RedisKeyConstants;
 import com.berg.dao.page.PageInfo;
 import com.berg.dao.system.mp.entity.MsgRecordTbl;
 import com.berg.dao.system.mp.service.MsgRecordTblDao;
-import com.berg.exception.FailException;
+import com.berg.common.exception.FailException;
 import com.berg.system.service.mp.TemplateMsgService;
 import com.berg.vo.mp.MpTemplateVo;
 import com.berg.vo.mp.MsgRecordVo;

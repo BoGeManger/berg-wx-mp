@@ -1,6 +1,6 @@
 package com.berg.mp.service.mp.impl;
 
-import com.berg.constant.RedisKeyConstants;
+import com.berg.common.constant.RedisKeyConstants;
 import com.berg.mp.service.mp.ActivityQRCodeService;
 import com.berg.mp.service.mp.KeysReplyService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;

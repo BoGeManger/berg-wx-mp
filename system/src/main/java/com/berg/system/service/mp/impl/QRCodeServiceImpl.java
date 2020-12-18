@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.berg.dao.page.PageInfo;
 import com.berg.dao.system.mp.entity.QrcodeTbl;
 import com.berg.dao.system.mp.service.QrcodeTblDao;
-import com.berg.exception.FailException;
+import com.berg.common.exception.FailException;
 import com.berg.system.service.mp.QRCodeService;
 import com.berg.vo.mp.MpQrCodeTicketVo;
 import com.berg.vo.mp.QRCodeVo;

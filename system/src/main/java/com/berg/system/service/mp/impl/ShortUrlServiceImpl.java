@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.berg.dao.page.PageInfo;
 import com.berg.dao.system.mp.entity.ShortUrlTbl;
 import com.berg.dao.system.mp.service.ShortUrlTblDao;
-import com.berg.exception.FailException;
+import com.berg.common.exception.FailException;
 import com.berg.system.auth.JWTUtil;
 import com.berg.system.service.mp.ShortUrlService;
 import com.berg.vo.mp.ShortUrlVo;

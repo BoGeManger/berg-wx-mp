@@ -1,7 +1,7 @@
 package com.berg.system.controller;
 
-import com.berg.base.BaseController;
-import com.berg.message.Result;
+import com.berg.common.base.BaseController;
+import com.berg.common.constant.Result;
 import com.berg.system.service.mp.TagsService;
 import com.berg.vo.mp.MpUserTagVo;
 import com.berg.vo.mp.in.MpBatchTagInVo;

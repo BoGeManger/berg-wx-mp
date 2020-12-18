@@ -1,8 +1,8 @@
 package com.berg.mp.controller;
 
-import com.berg.base.BaseController;
+import com.berg.common.base.BaseController;
 import com.berg.dao.page.PageInfo;
-import com.berg.message.Result;
+import com.berg.common.constant.Result;
 import com.berg.mp.service.mp.TemplateMsgPublishService;
 import com.berg.vo.common.PageInVo;
 import com.berg.vo.mp.MsgPublishVo;

@@ -1,7 +1,7 @@
 package com.berg.mp.service.mp.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.berg.constant.RedisKeyConstants;
+import com.berg.common.constant.RedisKeyConstants;
 import com.berg.dao.system.mb.entity.MpBindTbl;
 import com.berg.dao.system.mb.service.MpBindTblDao;
 import com.berg.mp.auth.JWTToken;

@@ -1,15 +1,15 @@
 package com.berg.mp.service.mp.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.berg.constant.RedisKeyConstants;
+import com.berg.common.constant.RedisKeyConstants;
 import com.berg.dao.system.mb.entity.MemberTbl;
 import com.berg.dao.system.mb.entity.MpBindTbl;
 import com.berg.dao.system.mb.service.MemberTblDao;
 import com.berg.dao.system.mb.service.MpBindTblDao;
-import com.berg.exception.AppException;
-import com.berg.exception.FailException;
-import com.berg.exception.UnauthException;
-import com.berg.exception.UserFriendException;
+import com.berg.common.exception.AppException;
+import com.berg.common.exception.FailException;
+import com.berg.common.exception.UnauthException;
+import com.berg.common.exception.UserFriendException;
 import com.berg.mp.service.base.BaseService;
 import com.berg.mp.service.mp.UserService;
 import com.berg.vo.mp.in.MpRegisterInVo;

@@ -1,7 +1,7 @@
 package com.berg.mp.service.mp.impl;
 
-import com.berg.exception.FailException;
-import com.berg.exception.ParamException;
+import com.berg.common.exception.FailException;
+import com.berg.common.exception.ParamException;
 import com.berg.mp.service.mp.PortalService;
 import com.berg.wx.miniapp.utils.WxMaUtil;
 import com.berg.wx.mp.utils.WxMpUtil;

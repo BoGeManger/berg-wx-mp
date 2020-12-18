@@ -1,7 +1,7 @@
 package com.berg.mp.controller;
 
-import com.berg.base.BaseController;
-import com.berg.message.Result;
+import com.berg.common.base.BaseController;
+import com.berg.common.constant.Result;
 import com.berg.mp.service.mp.TemplateMsgService;
 import com.berg.vo.mp.MpTemplateVo;
 import com.berg.vo.mp.in.MpTemplateSendInVo;

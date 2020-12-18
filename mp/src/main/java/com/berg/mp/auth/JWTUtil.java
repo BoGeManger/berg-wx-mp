@@ -1,12 +1,12 @@
 package com.berg.mp.auth;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
+import cn.hutool.crypto.SecureUtil;
+import cn.hutool.json.JSONUtil;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.berg.utils.DesUtil;
-import com.berg.utils.JsonHelper;
 
 import com.berg.vo.mp.MpUserInfoVo;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +20,10 @@ import java.time.LocalDateTime;
 @Slf4j
 @Component
 public class JWTUtil {
+
+    public static final String KEY = "password";
+
+    public static final cn.hutool.crypto.symmetric.DES DES = SecureUtil.des(KEY.getBytes());
 
     /**
      * 从token中获取openId
@@ -96,7 +100,7 @@ public class JWTUtil {
      */
     public MpUserInfoVo getUserinfo() {
         try{
-            return JsonHelper.fromJson(getField("userinfo"), MpUserInfoVo.class,null);
+            return JSONUtil.toBean(getField("userinfo"), MpUserInfoVo.class);
         }catch (Exception ex){
             return null;
         }
@@ -146,7 +150,7 @@ public class JWTUtil {
     public String getToken(){
         try {
             Subject subject = SecurityUtils.getSubject();
-            return DesUtil.encrypt(subject.getPrincipal().toString());
+            return DES.encryptHex(subject.getPrincipal().toString());
         } catch (JWTDecodeException e) {
             return null;
         }
@@ -176,7 +180,7 @@ public class JWTUtil {
                     .withClaim("maBindId", maBindId)
                     .withClaim("createTime", LocalDateTimeUtil.format(createTime,"yyyy-MM-dd HH:mm:ss,SSS"))
                     .withClaim("modifyTime",  LocalDateTimeUtil.format(modifyTime,"yyyy-MM-dd HH:mm:ss,SSS"))
-                    .withClaim("userinfo", JsonHelper.toJson(userInfoVo,null))
+                    .withClaim("userinfo", JSONUtil.toJsonStr(userInfoVo))
                     .withClaim("oauthAccessToken", oauthAccessToken)
                     .sign(algorithm);
         } catch (Exception e) {

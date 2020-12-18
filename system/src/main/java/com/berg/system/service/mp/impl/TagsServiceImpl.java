@@ -1,6 +1,6 @@
 package com.berg.system.service.mp.impl;
 
-import com.berg.exception.FailException;
+import com.berg.common.exception.FailException;
 import com.berg.system.service.mp.TagsService;
 import com.berg.vo.mp.MpUserTagVo;
 import com.berg.vo.mp.in.MpBatchTagInVo;

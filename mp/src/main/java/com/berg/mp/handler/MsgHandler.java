@@ -2,7 +2,7 @@ package com.berg.mp.handler;
 
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import com.berg.constant.RedisKeyConstants;
+import com.berg.common.constant.RedisKeyConstants;
 import com.berg.dao.system.mp.entity.KeysReplyTbl;
 import com.berg.mp.service.mp.KeysReplyService;
 import me.chanjar.weixin.common.error.WxErrorException;

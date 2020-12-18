@@ -6,7 +6,7 @@ import com.berg.dao.base.DSTransactional;
 import com.berg.dao.system.mp.entity.MsgPublishTbl;
 import com.berg.dao.system.mp.entity.MsgSubscribeTbl;
 import com.berg.dao.system.mp.service.MsgSubscribeTblDao;
-import com.berg.exception.FailException;
+import com.berg.common.exception.FailException;
 import com.berg.wx.mp.utils.WxMpUtil;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;

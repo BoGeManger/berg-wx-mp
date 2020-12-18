@@ -1,7 +1,7 @@
 package com.berg.system.service.mp.impl;
 
 import cn.hutool.core.date.DateUtil;
-import com.berg.exception.FailException;
+import com.berg.common.exception.FailException;
 import com.berg.system.service.mp.DataCubeService;
 import com.berg.vo.mp.MpInterfaceSummaryVo;
 import com.berg.vo.mp.in.MpGetInterfaceSummaryInVo;
