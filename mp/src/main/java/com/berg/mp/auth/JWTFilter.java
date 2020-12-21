@@ -1,9 +1,9 @@
 package com.berg.mp.auth;
 
-import cn.hutool.extra.spring.SpringUtil;
 import com.alibaba.fastjson.JSON;
 import com.berg.common.constant.MessageConstants;
 import com.berg.common.constant.Result;
+import com.berg.common.utils.SpringUtil;
 import com.berg.mp.constant.MpConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
