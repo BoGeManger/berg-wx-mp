@@ -10,7 +10,7 @@ import com.berg.system.service.mp.TemplateMsgService;
 import com.berg.vo.mp.MpTemplateVo;
 import com.berg.vo.mp.MsgRecordVo;
 import com.berg.vo.mp.in.GetMsgRecordPageInVo;
-import com.berg.wx.mp.utils.WxMpUtil;
+import com.berg.wx.utils.WxMpUtil;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplate;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;

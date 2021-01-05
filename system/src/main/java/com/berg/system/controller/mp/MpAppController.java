@@ -1,6 +1,6 @@
 package com.berg.system.controller.mp;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.common.constant.Result;
 import com.berg.system.service.mp.AppService;
 import com.berg.vo.mp.MpAppVo;
@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/mpapp")
 @Api(tags = "微信公众号应用管理")
-public class MpAppController extends BaseController {
+public class MpAppController extends AbstractController {
 
     @Autowired
     AppService appService;

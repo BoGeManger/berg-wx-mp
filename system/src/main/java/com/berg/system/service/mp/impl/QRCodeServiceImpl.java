@@ -9,7 +9,7 @@ import com.berg.system.service.mp.QRCodeService;
 import com.berg.vo.mp.MpQrCodeTicketVo;
 import com.berg.vo.mp.QRCodeVo;
 import com.berg.vo.mp.in.GetQRCodePageInVo;
-import com.berg.wx.mp.utils.WxMpUtil;
+import com.berg.wx.utils.WxMpUtil;
 import me.chanjar.weixin.mp.bean.result.WxMpQrCodeTicket;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;

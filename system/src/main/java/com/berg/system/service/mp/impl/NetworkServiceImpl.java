@@ -4,7 +4,7 @@ import com.berg.common.exception.FailException;
 import com.berg.system.service.mp.NetworkService;
 import com.berg.vo.mp.in.MpNetCheckInVo;
 import com.berg.vo.mp.out.MpNetCheckOutVo;
-import com.berg.wx.mp.utils.WxMpUtil;
+import com.berg.wx.utils.WxMpUtil;
 import me.chanjar.weixin.common.bean.WxNetCheckResult;
 import org.springframework.stereotype.Service;
 

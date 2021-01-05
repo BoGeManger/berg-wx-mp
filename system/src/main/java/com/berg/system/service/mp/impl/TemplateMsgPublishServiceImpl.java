@@ -10,7 +10,7 @@ import com.berg.dao.system.mp.entity.MsgPublishTbl;
 import com.berg.dao.system.mp.entity.MsgSubscribeTbl;
 import com.berg.dao.system.mp.service.MsgPublishTblDao;
 import com.berg.dao.system.mp.service.MsgSubscribeTblDao;
-import com.berg.system.auth.JWTUtil;
+import com.berg.system.service.AbstractService;
 import com.berg.system.service.mp.TemplateMsgPublishService;
 import com.berg.vo.mp.MsgPublishEditVo;
 import com.berg.vo.mp.MsgPublishVo;
@@ -24,10 +24,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class TemplateMsgPublishServiceImpl implements TemplateMsgPublishService {
-
-    @Autowired
-    JWTUtil jwtUtil;
+public class TemplateMsgPublishServiceImpl extends AbstractService implements TemplateMsgPublishService {
 
     @Autowired
     TemplateMsgPublishAsyncTask templateMsgPublishAsyncTask;
@@ -100,7 +97,7 @@ public class TemplateMsgPublishServiceImpl implements TemplateMsgPublishService 
      */
     String save(MsgPublishEditVo input){
         LocalDateTime now = LocalDateTime.now();
-        String operator = jwtUtil.getUsername();
+        String operator = getUsername();
         MsgPublishTbl msgPublishTbl = new MsgPublishTbl();
         BeanUtils.copyProperties(input,msgPublishTbl);
         if(input.getAppId().equals("0")){
@@ -121,7 +118,7 @@ public class TemplateMsgPublishServiceImpl implements TemplateMsgPublishService 
     @DSTransactional
     @Override
     public void sendMessage(String id) {
-        String operator = jwtUtil.getUsername();
+        String operator = getUsername();
         LocalDateTime now = LocalDateTime.now();
         //消息发布更新
         MsgPublishTbl msgPublishTbl = new MsgPublishTbl();

@@ -7,7 +7,7 @@ import com.berg.dao.system.mp.entity.MsgPublishTbl;
 import com.berg.dao.system.mp.entity.MsgSubscribeTbl;
 import com.berg.dao.system.mp.service.MsgSubscribeTblDao;
 import com.berg.common.exception.FailException;
-import com.berg.wx.mp.utils.WxMpUtil;
+import com.berg.wx.utils.WxMpUtil;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 import org.springframework.beans.BeanUtils;

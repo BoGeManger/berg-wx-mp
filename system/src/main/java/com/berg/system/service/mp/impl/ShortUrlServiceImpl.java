@@ -5,12 +5,12 @@ import com.berg.dao.page.PageInfo;
 import com.berg.dao.system.mp.entity.ShortUrlTbl;
 import com.berg.dao.system.mp.service.ShortUrlTblDao;
 import com.berg.common.exception.FailException;
-import com.berg.system.auth.JWTUtil;
+import com.berg.system.service.AbstractService;
 import com.berg.system.service.mp.ShortUrlService;
 import com.berg.vo.mp.ShortUrlVo;
 import com.berg.vo.mp.in.GetShortUrlPageInVo;
 import com.berg.vo.mp.in.MpCreateShortUrlInVo;
-import com.berg.wx.mp.utils.WxMpUtil;
+import com.berg.wx.utils.WxMpUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,10 +18,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class ShortUrlServiceImpl implements ShortUrlService {
-
-    @Autowired
-    JWTUtil jwtUtil;
+public class ShortUrlServiceImpl extends AbstractService implements ShortUrlService {
 
     @Autowired
     ShortUrlTblDao shortUrlTblDao;
@@ -73,7 +70,7 @@ public class ShortUrlServiceImpl implements ShortUrlService {
         shortUrlTbl.setLongUrl(longUrl);
         shortUrlTbl.setShortUrl(shortUrl);
         shortUrlTbl.setCreateTime(now);
-        shortUrlTbl.setCreateUser(jwtUtil.getUsername());
+        shortUrlTbl.setCreateUser(getUsername());
         shortUrlTbl.setRemark(remark);
         shortUrlTblDao.save(shortUrlTbl);
     }

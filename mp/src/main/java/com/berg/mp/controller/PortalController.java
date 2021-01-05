@@ -1,6 +1,6 @@
 package com.berg.mp.controller;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.common.constant.Result;
 import com.berg.mp.service.mp.PortalService;
 import io.swagger.annotations.Api;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/portal/{appId}")
 @Api(tags = "微信公众号消息")
-public class PortalController extends BaseController {
+public class PortalController extends AbstractController {
 
     @Autowired
     PortalService portalService;

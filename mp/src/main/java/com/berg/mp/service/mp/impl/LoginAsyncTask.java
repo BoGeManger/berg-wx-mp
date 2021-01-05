@@ -1,10 +1,10 @@
 package com.berg.mp.service.mp.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.berg.auth.mp.auth.JWTToken;
 import com.berg.common.constant.RedisKeyConstants;
 import com.berg.dao.system.mb.entity.MpBindTbl;
 import com.berg.dao.system.mb.service.MpBindTblDao;
-import com.berg.mp.auth.JWTToken;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;

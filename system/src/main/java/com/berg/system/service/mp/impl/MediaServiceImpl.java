@@ -5,16 +5,15 @@ import com.berg.dao.page.PageInfo;
 import com.berg.dao.system.mp.entity.MediaTbl;
 import com.berg.dao.system.mp.service.MediaTblDao;
 import com.berg.common.exception.FailException;
-import com.berg.system.auth.JWTUtil;
+import com.berg.system.service.AbstractService;
 import com.berg.system.service.mp.MediaService;
 import com.berg.vo.mp.MediaVo;
 import com.berg.vo.mp.in.GetMediaPageInVo;
 import com.berg.vo.mp.in.MpMaterialNewsUpdateInVo;
 import com.berg.vo.mp.in.MpMaterialNewsUploadInVo;
-import com.berg.wx.mp.utils.WxMpUtil;
+import com.berg.wx.utils.WxMpUtil;
 import me.chanjar.weixin.common.bean.result.WxMediaUploadResult;
 import me.chanjar.weixin.mp.bean.material.*;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,10 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MediaServiceImpl implements MediaService {
-
-    @Autowired
-    JWTUtil jwtUtil;
+public class MediaServiceImpl extends AbstractService implements MediaService {
 
     @Autowired
     MediaTblDao mediaTblDao;
@@ -58,7 +54,7 @@ public class MediaServiceImpl implements MediaService {
     @Override
     public void mediaUpload(String appId,String mediaType,String remark,MultipartFile multipartFile){
         File file = null;
-        String operator = jwtUtil.getUsername();
+        String operator = getUsername();
         try{
             String originalFilename = multipartFile.getOriginalFilename();
             String[] filename = originalFilename.split("\\.");
@@ -83,7 +79,7 @@ public class MediaServiceImpl implements MediaService {
     @Override
     public void mediaImgUpload(String appId,String remark,MultipartFile multipartFile){
         File file = null;
-        String operator = jwtUtil.getUsername();
+        String operator = getUsername();
         try{
             String originalFilename = multipartFile.getOriginalFilename();
             String[] filename = originalFilename.split("\\.");
@@ -112,7 +108,7 @@ public class MediaServiceImpl implements MediaService {
     @Override
     public void materialFileUpload(String appId,String mediaType,String name,String videoTitle,String videoIntroduction,String remark,MultipartFile multipartFile){
         File file = null;
-        String operator = jwtUtil.getUsername();
+        String operator = getUsername();
         try{
             String originalFilename = multipartFile.getOriginalFilename();
             String[] filename = originalFilename.split("\\.");
@@ -140,7 +136,7 @@ public class MediaServiceImpl implements MediaService {
      */
     @Override
     public void materialNewsUpload(MpMaterialNewsUploadInVo input){
-        String operator = jwtUtil.getUsername();
+        String operator = getUsername();
         try{
             WxMpMaterialNews wxMpMaterialNews = new WxMpMaterialNews();
             List<WxMpNewsArticle> articles = new ArrayList<>();
@@ -167,7 +163,7 @@ public class MediaServiceImpl implements MediaService {
     @Override
     public Boolean materialNewsUpdate(MpMaterialNewsUpdateInVo input){
         Boolean flag = false;
-        String operator = jwtUtil.getUsername();
+        String operator = getUsername();
         try{
             WxMpMaterialArticleUpdate wxMpMaterialArticleUpdate = new WxMpMaterialArticleUpdate();
             BeanUtils.copyProperties(input,wxMpMaterialArticleUpdate);
@@ -189,7 +185,7 @@ public class MediaServiceImpl implements MediaService {
     @Override
     public Boolean materialDelete(String appId,String mediaId){
         Boolean flag = false;
-        String operator = jwtUtil.getUsername();
+        String operator = getUsername();
         try{
             flag = WxMpUtil.getService(appId).getMaterialService().materialDelete(mediaId);
             //删除记录

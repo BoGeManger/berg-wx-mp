@@ -1,33 +1,31 @@
 package com.berg.mp.service.mp.impl;
-import java.time.LocalDateTime;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.berg.auth.mp.auth.JWTToken;
+import com.berg.auth.mp.constant.AuthConstants;
 import com.berg.common.constant.RedisKeyConstants;
 import com.berg.dao.system.mb.entity.MpBindTbl;
 import com.berg.dao.system.mb.service.MpBindTblDao;
 import com.berg.common.exception.FailException;
-import com.berg.mp.auth.JWTToken;
-import com.berg.mp.constant.MpConstants;
-import com.berg.mp.service.base.BaseService;
+import com.berg.mp.service.AbstractService;
 import com.berg.mp.service.mp.LoginService;
 import com.berg.vo.mp.MpUserInfoVo;
 import com.berg.vo.mp.in.MpGetAuthUrlInVo;
 import com.berg.vo.mp.in.MpLoginInVo;
 import com.berg.vo.mp.in.MpRefreshInVo;
 import com.berg.vo.mp.out.MpLoginOutVo;
-import com.berg.wx.mp.utils.WxMpUtil;
+import com.berg.wx.utils.WxMpUtil;
 import me.chanjar.weixin.common.bean.oauth2.WxOAuth2AccessToken;
-import me.chanjar.weixin.mp.api.WxMpService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoginServiceImpl extends BaseService implements LoginService {
+public class LoginServiceImpl extends AbstractService implements LoginService {
 
     @Autowired
-    MpConstants mpConstants;
+    AuthConstants authConstants;
 
     @Autowired
     LoginAsyncTask loginAsyncTask;
@@ -87,9 +85,9 @@ public class LoginServiceImpl extends BaseService implements LoginService {
         if(StringUtils.isNotBlank(input.getCode())) {
             wxOAuth2AccessToken = getAccessToken(appId,input.getCode());
         }else{
-            wxOAuth2AccessToken.setOpenId(jWTUtil.getOpenId());
-            wxOAuth2AccessToken.setUnionId(jWTUtil.getUnionId());
-            wxOAuth2AccessToken.setAccessToken(jWTUtil.getOauthAccessToken());
+            wxOAuth2AccessToken.setOpenId(getOpenId());
+            wxOAuth2AccessToken.setUnionId(getUnionId());
+            wxOAuth2AccessToken.setAccessToken(getOauthAccessToken());
         }
         MpLoginOutVo result = setMpLoginOutVo(appId,wxOAuth2AccessToken.getOpenId(),wxOAuth2AccessToken.getUnionId());
         //生成JWT
@@ -204,9 +202,9 @@ public class LoginServiceImpl extends BaseService implements LoginService {
      * @return
      */
     JWTToken getJwt(MpLoginOutVo input,String oauthAccessToken) {
-        String token = jWTUtil.DES.encryptHex(jWTUtil.sign(input.getAppId(),input.getOpenId(),input.getUnionId(), input.getMemberId()
+        String token =authenticationUtil.DES.encryptHex(authenticationUtil.sign(input.getAppId(),input.getOpenId(),input.getUnionId(), input.getMemberId()
                 ,input.getMaBindId(),input.getCreateTime(),input.getModifyTime(),input.getUserinfo(),oauthAccessToken));
-        return new JWTToken(token, input.getAppId(),input.getOpenId(),mpConstants.getExpireTime());
+        return new JWTToken(token, input.getAppId(),input.getOpenId(),authConstants.getExpireTime());
     }
 
     /**
@@ -214,6 +212,6 @@ public class LoginServiceImpl extends BaseService implements LoginService {
      */
     @Override
     public void logout(){
-        loginAsyncTask.delTokenCache(jWTUtil.getToken());
+        loginAsyncTask.delTokenCache(getToken());
     }
 }

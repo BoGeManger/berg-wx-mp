@@ -1,6 +1,6 @@
 package com.berg.system.controller.mp;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.dao.page.PageInfo;
 import com.berg.common.constant.Result;
 import com.berg.system.service.mp.QRCodeService;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/qrcode")
 @Api(tags = "微信公众号二维码管理")
-public class QRCodeController extends BaseController {
+public class QRCodeController extends AbstractController {
 
     @Autowired
     QRCodeService qrCodeService;

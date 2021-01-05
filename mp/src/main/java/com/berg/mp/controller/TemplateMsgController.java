@@ -1,6 +1,6 @@
 package com.berg.mp.controller;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.common.constant.Result;
 import com.berg.mp.service.mp.TemplateMsgService;
 import com.berg.vo.mp.MpTemplateVo;
@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/templateMsg")
 @Api(tags = "微信公众号模板消息")
-public class TemplateMsgController extends BaseController {
+public class TemplateMsgController extends AbstractController {
 
     @Autowired
     TemplateMsgService templateMsgService;

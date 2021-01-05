@@ -10,7 +10,7 @@ import com.berg.dao.page.PageInfo;
 import com.berg.dao.system.mp.entity.KeysReplyTbl;
 import com.berg.dao.system.mp.service.KeysReplyTblDao;
 import com.berg.common.exception.UserFriendException;
-import com.berg.system.auth.JWTUtil;
+import com.berg.system.service.AbstractService;
 import com.berg.system.service.mp.KeysReplyService;
 import com.berg.vo.mp.KeysReplyEditVo;
 import com.berg.vo.mp.KeysReplyVo;
@@ -22,10 +22,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KeysReplyServiceImpl implements KeysReplyService {
-
-    @Autowired
-    JWTUtil jwtUtil;
+public class KeysReplyServiceImpl extends AbstractService implements KeysReplyService {
 
     @Autowired
     KeysReplyTblDao keysReplyTblDao;
@@ -66,7 +63,7 @@ public class KeysReplyServiceImpl implements KeysReplyService {
     @DSTransactional
     @Override
     public Integer addKeysReply(KeysReplyEditVo input){
-        String operator = jwtUtil.getUsername();
+        String operator = getUsername();
         Integer id = addOrUpdateKeysReply(input,operator);
         setKeysReplyCache(input);
         return id;
@@ -80,7 +77,7 @@ public class KeysReplyServiceImpl implements KeysReplyService {
     @DSTransactional
     @Override
     public Integer updateKeysReply(KeysReplyEditVo input){
-        String operator = jwtUtil.getUsername();
+        String operator = getUsername();
         Integer id = addOrUpdateKeysReply(input,operator);
         delKeysReplyCache(input.getAppId(),input.getKeyContent());
         setKeysReplyCache(input);
@@ -157,7 +154,7 @@ public class KeysReplyServiceImpl implements KeysReplyService {
     @DSTransactional
     @Override
     public void delKeysReply(Integer id){
-        String operator = jwtUtil.getUsername();
+        String operator = getUsername();
         KeysReplyTbl keysReplyTbl = keysReplyTblDao.getById(id);
         keysReplyTbl.setId(id);
         keysReplyTbl.setDelTime(LocalDateTime.now());

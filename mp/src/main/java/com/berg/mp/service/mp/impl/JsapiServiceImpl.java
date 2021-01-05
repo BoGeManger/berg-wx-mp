@@ -1,16 +1,16 @@
 package com.berg.mp.service.mp.impl;
 
 import com.berg.common.exception.FailException;
-import com.berg.mp.service.base.BaseService;
+import com.berg.mp.service.AbstractService;
 import com.berg.mp.service.mp.JsapiService;
 import com.berg.vo.mp.out.MpCreateJsapiSignatureOutVo;
-import com.berg.wx.mp.utils.WxMpUtil;
+import com.berg.wx.utils.WxMpUtil;
 import me.chanjar.weixin.common.bean.WxJsapiSignature;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JsapiServiceImpl extends BaseService implements JsapiService {
+public class JsapiServiceImpl extends AbstractService implements JsapiService {
 
     /**
      * 生成JSSDK配置

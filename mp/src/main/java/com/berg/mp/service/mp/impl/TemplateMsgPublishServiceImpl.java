@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.berg.dao.page.PageInfo;
 import com.berg.dao.system.mp.entity.MsgPublishTbl;
 import com.berg.dao.system.mp.service.MsgPublishTblDao;
-import com.berg.mp.service.base.BaseService;
+import com.berg.mp.service.AbstractService;
 import com.berg.mp.service.mp.TemplateMsgPublishService;
 import com.berg.vo.common.PageInVo;
 import com.berg.vo.mp.MsgPublishVo;
@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TemplateMsgPublishServiceImpl extends BaseService implements TemplateMsgPublishService {
+public class TemplateMsgPublishServiceImpl extends AbstractService implements TemplateMsgPublishService {
 
     @Autowired
     MsgPublishTblDao msgPublishTblDao;
@@ -45,7 +45,7 @@ public class TemplateMsgPublishServiceImpl extends BaseService implements Templa
     @Override
     public PageInfo<MsgPublishVo> getMsgSubscribePublishPage(PageInVo input){
         return msgPublishTblDao.page(input,()->{
-            String openId = jWTUtil.getOpenId();
+            String openId = getOpenId();
             return msgPublishTblDao.getMapper().listMsgSubscribePublish(getAppId(),openId);
         });
     }

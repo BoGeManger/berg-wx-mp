@@ -1,6 +1,6 @@
 package com.berg.system.controller.mp;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.dao.page.PageInfo;
 import com.berg.common.constant.Result;
 import com.berg.system.service.mp.KeysReplyService;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/keysReply")
 @Api(tags = "微信公众号关键字自动回复管理")
-public class KeysReplyController extends BaseController {
+public class KeysReplyController extends AbstractController {
 
     @Autowired
     KeysReplyService keysReplyService;

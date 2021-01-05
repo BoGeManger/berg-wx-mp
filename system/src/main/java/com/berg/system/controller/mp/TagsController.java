@@ -1,6 +1,6 @@
 package com.berg.system.controller.mp;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.common.constant.Result;
 import com.berg.system.service.mp.TagsService;
 import com.berg.vo.mp.MpUserTagVo;
@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/tags")
 @Api(tags = "微信公众号标签管理")
-public class TagsController extends BaseController {
+public class TagsController extends AbstractController {
 
     @Autowired
     TagsService tagsService;

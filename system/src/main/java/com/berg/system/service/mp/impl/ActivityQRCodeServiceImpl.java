@@ -14,7 +14,7 @@ import com.berg.dao.system.mp.entity.ActivityQrcodeTbl;
 import com.berg.dao.system.mp.service.ActivityQrcodeEventTblDao;
 import com.berg.dao.system.mp.service.ActivityQrcodeRecordTblDao;
 import com.berg.dao.system.mp.service.ActivityQrcodeTblDao;
-import com.berg.system.auth.JWTUtil;
+import com.berg.system.service.AbstractService;
 import com.berg.system.service.mp.ActivityQRCodeService;
 import com.berg.vo.mp.ActivityQRCodeEditVo;
 import com.berg.vo.mp.ActivityQRCodeEventVo;
@@ -29,10 +29,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ActivityQRCodeServiceImpl implements ActivityQRCodeService {
-
-    @Autowired
-    JWTUtil jwtUtil;
+public class ActivityQRCodeServiceImpl extends AbstractService implements ActivityQRCodeService {
 
     @Autowired
     StringRedisTemplate stringRedisTemplate;
@@ -85,7 +82,7 @@ public class ActivityQRCodeServiceImpl implements ActivityQRCodeService {
     @DSTransactional
     @Override
     public String addOrUpdateActivityQRCode(ActivityQRCodeEditVo input){
-        String operator = jwtUtil.getUsername();
+        String operator = getUsername();
         return addOrUpdateActivityQRCode(input,operator);
     }
 
@@ -97,7 +94,7 @@ public class ActivityQRCodeServiceImpl implements ActivityQRCodeService {
     @DSTransactional
     @Override
     public String updateActivityQRCode(ActivityQRCodeEditVo input){
-        String operator = jwtUtil.getUsername();
+        String operator = getUsername();
         return addOrUpdateActivityQRCode(input,operator);
     }
 
@@ -168,7 +165,7 @@ public class ActivityQRCodeServiceImpl implements ActivityQRCodeService {
      */
     @Override
     public void delActivityQRCode(String id){
-        String operator = jwtUtil.getUsername();
+        String operator = getUsername();
         ActivityQrcodeTbl activityQrcodeTbl = activityQrcodeTblDao.getById(id);
         activityQrcodeTbl.setDelTime(LocalDateTime.now());
         activityQrcodeTbl.setDelUser(operator);

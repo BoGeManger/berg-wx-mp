@@ -4,7 +4,7 @@ import com.berg.common.exception.FailException;
 import com.berg.system.service.mp.TagsService;
 import com.berg.vo.mp.MpUserTagVo;
 import com.berg.vo.mp.in.MpBatchTagInVo;
-import com.berg.wx.mp.utils.WxMpUtil;
+import com.berg.wx.utils.WxMpUtil;
 import me.chanjar.weixin.mp.bean.tag.WxUserTag;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;

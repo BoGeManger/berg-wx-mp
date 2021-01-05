@@ -1,15 +1,15 @@
 package com.berg.mp.service.mp.impl;
 
 import com.berg.common.exception.FailException;
-import com.berg.mp.service.base.BaseService;
+import com.berg.mp.service.AbstractService;
 import com.berg.mp.service.mp.KefuService;
 import com.berg.vo.mp.in.MpKefuSendTextInVo;
-import com.berg.wx.mp.utils.WxMpUtil;
+import com.berg.wx.utils.WxMpUtil;
 import me.chanjar.weixin.mp.bean.kefu.WxMpKefuMessage;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KefuServiceImpl extends BaseService implements KefuService {
+public class KefuServiceImpl extends AbstractService implements KefuService {
 
     /**
      * 发送客服文本消息

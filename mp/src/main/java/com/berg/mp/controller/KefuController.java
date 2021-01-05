@@ -1,6 +1,6 @@
 package com.berg.mp.controller;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.common.constant.Result;
 import com.berg.mp.service.mp.KefuService;
 import com.berg.vo.mp.in.MpKefuSendTextInVo;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/kefu")
 @Api(tags = "微信公众号客服消息")
-public class KefuController extends BaseController {
+public class KefuController extends AbstractController {
 
     @Autowired
     KefuService kefuService;

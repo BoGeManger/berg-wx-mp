@@ -1,6 +1,6 @@
 package com.berg.mp.controller;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.common.constant.Result;
 import com.berg.mp.service.mp.JsapiService;
 import com.berg.vo.mp.out.MpCreateJsapiSignatureOutVo;
@@ -17,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 @RestController
 @RequestMapping("/jsapi")
 @Api(tags = "微信公众号JSSDK")
-public class JsapiController extends BaseController {
+public class JsapiController extends AbstractController {
 
     @Autowired
     JsapiService jsapiService;

@@ -1,7 +1,7 @@
 package com.berg.mp.service.mp.impl;
 
 import com.berg.mp.handler.*;
-import com.berg.wx.mp.service.WxMpMessageRouterService;
+import com.berg.wx.service.WxMpMessageRouterService;
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;

@@ -1,10 +1,9 @@
 package com.berg.mp.service.mp.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.berg.dao.system.mp.entity.MsgSubscribeTbl;
 import com.berg.dao.system.mp.service.MsgSubscribeTblDao;
-import com.berg.mp.service.base.BaseService;
+import com.berg.mp.service.AbstractService;
 import com.berg.mp.service.mp.TemplateMsgSubscribeService;
 import com.berg.vo.mp.in.TemplateSubscribeInVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class TemplateMsgSubscribeServiceImpl extends BaseService implements TemplateMsgSubscribeService {
+public class TemplateMsgSubscribeServiceImpl extends AbstractService implements TemplateMsgSubscribeService {
 
     @Autowired
     MsgSubscribeTblDao msgSubscribeTblDao;
@@ -25,9 +24,9 @@ public class TemplateMsgSubscribeServiceImpl extends BaseService implements Temp
     @Override
     public void subscribe(TemplateSubscribeInVo input){
         String appId = getAppId();
-        String openId = jWTUtil.getOpenId();
-        String unionId = jWTUtil.getUnionId();
-        String memberId = jWTUtil.getMemberId();
+        String openId = getOpenId();
+        String unionId = getUnionId();
+        String memberId = getMemberId();
         LocalDateTime now = LocalDateTime.now();
         MsgSubscribeTbl msgSubscribeTbl = new MsgSubscribeTbl();
         msgSubscribeTbl.setAppId(appId);
@@ -50,7 +49,7 @@ public class TemplateMsgSubscribeServiceImpl extends BaseService implements Temp
     @Override
     public void unsubscribe(String publishId){
         String appId = getAppId();
-        String openId = jWTUtil.getOpenId();
+        String openId = getOpenId();
         LambdaUpdateWrapper query = new LambdaUpdateWrapper<MsgSubscribeTbl>()
                 .eq(MsgSubscribeTbl::getPublishId,publishId)
                 .eq(MsgSubscribeTbl::getAppId,appId)

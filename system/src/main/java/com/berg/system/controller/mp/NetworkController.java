@@ -1,6 +1,6 @@
 package com.berg.system.controller.mp;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.common.constant.Result;
 import com.berg.system.service.mp.NetworkService;
 import com.berg.vo.mp.in.MpNetCheckInVo;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/network")
 @Api(tags = "微信公众号网络管理")
-public class NetworkController extends BaseController {
+public class NetworkController extends AbstractController {
 
     @Autowired
     NetworkService networkService;

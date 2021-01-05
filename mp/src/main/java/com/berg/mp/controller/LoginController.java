@@ -1,6 +1,6 @@
 package com.berg.mp.controller;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.common.constant.Result;
 import com.berg.mp.service.mp.LoginService;
 import com.berg.vo.mp.in.MpGetAuthUrlInVo;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/login")
 @Api(tags = "微信公众号用户登录")
-public class LoginController extends BaseController {
+public class LoginController extends AbstractController {
 
     @Autowired
     LoginService loginService;

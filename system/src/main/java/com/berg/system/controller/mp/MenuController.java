@@ -1,6 +1,6 @@
 package com.berg.system.controller.mp;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.dao.page.PageInfo;
 import com.berg.common.constant.Result;
 import com.berg.system.service.mp.MenuService;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/network")
 @Api(tags = "微信公众号菜单管理")
-public class MenuController extends BaseController {
+public class MenuController extends AbstractController {
 
     @Autowired
     MenuService menuService;

@@ -9,14 +9,14 @@ import com.berg.dao.system.mp.entity.MenuTbl;
 import com.berg.dao.system.mp.service.MenuTblDao;
 import com.berg.common.exception.FailException;
 import com.berg.common.exception.ParamException;
-import com.berg.system.auth.JWTUtil;
+import com.berg.system.service.AbstractService;
 import com.berg.system.service.mp.MenuService;
 import com.berg.vo.mp.MenuVo;
 import com.berg.vo.mp.MpMenuVo;
 import com.berg.vo.mp.in.GetMenuPageInVo;
 import com.berg.vo.mp.in.MpCreateMenuInVo;
 import com.berg.vo.mp.out.MpGetMenuOutVo;
-import com.berg.wx.mp.utils.WxMpUtil;
+import com.berg.wx.utils.WxMpUtil;
 import me.chanjar.weixin.common.bean.menu.WxMenu;
 import me.chanjar.weixin.mp.bean.menu.WxMpMenu;
 import org.apache.commons.lang3.StringUtils;
@@ -25,10 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MenuServiceImpl implements MenuService {
-
-    @Autowired
-    JWTUtil jwtUtil;
+public class MenuServiceImpl extends AbstractService implements MenuService {
 
     @Autowired
     MenuTblDao menuTblDao;
@@ -93,7 +90,7 @@ public class MenuServiceImpl implements MenuService {
         menuTbl.setMenu(menu);
         menuTbl.setRemark(input.getRemark());
         menuTbl.setCreateTime(LocalDateTime.now());
-        menuTbl.setCreateUser(jwtUtil.getUsername());
+        menuTbl.setCreateUser(getUsername());
         menuTblDao.save(menuTbl);
         try{
             WxMpUtil.getService(input.getAppId()).getMenuService().menuCreate(menu);

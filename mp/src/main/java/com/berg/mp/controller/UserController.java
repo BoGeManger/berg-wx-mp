@@ -1,6 +1,6 @@
 package com.berg.mp.controller;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.common.constant.Result;
 import com.berg.mp.service.mp.UserService;
 import com.berg.vo.mp.in.MpRegisterInVo;
@@ -17,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 @RestController
 @RequestMapping("/login")
 @Api(tags = "微信公众号用户")
-public class UserController extends BaseController {
+public class UserController extends AbstractController {
 
     @Autowired
     UserService userService;

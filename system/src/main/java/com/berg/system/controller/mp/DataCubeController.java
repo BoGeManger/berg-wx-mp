@@ -1,6 +1,6 @@
 package com.berg.system.controller.mp;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.common.constant.Result;
 import com.berg.system.service.mp.DataCubeService;
 import com.berg.vo.mp.MpInterfaceSummaryVo;
@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/dataCube")
 @Api(tags = "微信公众号数据分析")
-public class DataCubeController extends BaseController {
+public class DataCubeController extends AbstractController {
 
     @Autowired
     DataCubeService dataCubeService;

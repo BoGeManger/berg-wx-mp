@@ -1,6 +1,6 @@
 package com.berg.system.controller.mp;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.dao.page.PageInfo;
 import com.berg.common.constant.Result;
 import com.berg.system.service.mp.TemplateMsgSubscribeService;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/templateMsgSubscribe")
 @Api(tags = "微信公众号模板消息订阅管理")
-public class TemplateMsgSubscribeController extends BaseController {
+public class TemplateMsgSubscribeController extends AbstractController {
 
     @Autowired
     TemplateMsgSubscribeService templateMsgSubscribeService;

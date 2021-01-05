@@ -6,16 +6,15 @@ import com.berg.dao.system.mb.entity.MemberTbl;
 import com.berg.dao.system.mb.entity.MpBindTbl;
 import com.berg.dao.system.mb.service.MemberTblDao;
 import com.berg.dao.system.mb.service.MpBindTblDao;
-import com.berg.common.exception.AppException;
 import com.berg.common.exception.FailException;
 import com.berg.common.exception.UnauthException;
 import com.berg.common.exception.UserFriendException;
-import com.berg.mp.service.base.BaseService;
+import com.berg.mp.service.AbstractService;
 import com.berg.mp.service.mp.UserService;
 import com.berg.vo.mp.in.MpRegisterInVo;
 import com.berg.vo.mp.out.MpOAuthUserInfoOutVo;
 import com.berg.vo.mp.out.MpUserInfoOutVo;
-import com.berg.wx.mp.utils.WxMpUtil;
+import com.berg.wx.utils.WxMpUtil;
 import me.chanjar.weixin.common.bean.WxOAuth2UserInfo;
 import me.chanjar.weixin.common.bean.oauth2.WxOAuth2AccessToken;
 import me.chanjar.weixin.mp.bean.result.WxMpUser;
@@ -30,7 +29,7 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Service
-public class UserServiceImpl extends BaseService implements UserService {
+public class UserServiceImpl extends AbstractService implements UserService {
 
     @Autowired
     StringRedisTemplate stringRedisTemplate;
@@ -64,7 +63,7 @@ public class UserServiceImpl extends BaseService implements UserService {
     @Override
     public void register(MpRegisterInVo input){
         String appId = getAppId();
-        String openId= jWTUtil.getOpenId();
+        String openId= getOpenId();
         //校验验证码是否过期
         String key = String.format(RedisKeyConstants.Mp.MP_VERIFY_CODE,appId.toLowerCase(),input.getPhone());
         String verifyCode = stringRedisTemplate.opsForValue().get(key);
@@ -110,7 +109,7 @@ public class UserServiceImpl extends BaseService implements UserService {
     public MpUserInfoOutVo userInfo(){
         MpUserInfoOutVo result = new MpUserInfoOutVo();
         String appId = getAppId();
-        String openId = jWTUtil.getOpenId();
+        String openId = getOpenId();
         try{
             WxMpUser wxMpUser = WxMpUtil.getService(appId).getUserService().userInfo(openId);
             BeanUtils.copyProperties(wxMpUser,result);
@@ -129,7 +128,7 @@ public class UserServiceImpl extends BaseService implements UserService {
     public MpOAuthUserInfoOutVo oauthUserInfo(){
         MpOAuthUserInfoOutVo result = new MpOAuthUserInfoOutVo();
         String appId = getAppId();
-        String openId = jWTUtil.getOpenId();
+        String openId = getOpenId();
         String key = String.format(RedisKeyConstants.Mp.MP_OAUTH_ACCESS_TOKEN,appId.toLowerCase(), openId.toLowerCase());
         String accessToken = stringRedisTemplate.opsForValue().get(key);
         if(!StringUtils.isNotBlank(accessToken)){

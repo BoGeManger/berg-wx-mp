@@ -1,6 +1,6 @@
 package com.berg.system.controller.member;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.dao.page.PageInfo;
 import com.berg.common.constant.Result;
 import com.berg.system.service.member.MemberService;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/member")
 @Api(tags = "会员管理")
-public class MemberController extends BaseController {
+public class MemberController extends AbstractController {
 
     @Autowired
     MemberService memberService;

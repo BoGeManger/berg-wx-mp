@@ -3,11 +3,11 @@ package com.berg.mp.service.mp.impl;
 import cn.hutool.json.JSONUtil;
 import com.berg.common.constant.RedisKeyConstants;
 import com.berg.common.exception.FailException;
-import com.berg.mp.service.base.BaseService;
+import com.berg.mp.service.AbstractService;
 import com.berg.mp.service.mp.TemplateMsgService;
 import com.berg.vo.mp.MpTemplateVo;
 import com.berg.vo.mp.in.MpTemplateSendInVo;
-import com.berg.wx.mp.utils.WxMpUtil;
+import com.berg.wx.utils.WxMpUtil;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplate;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 import org.springframework.beans.BeanUtils;
@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class TemplateServiceMsgImpl extends BaseService implements TemplateMsgService {
+public class TemplateServiceMsgImpl extends AbstractService implements TemplateMsgService {
 
     @Resource
     RedisTemplate<String, MpTemplateVo> redisTemplate;

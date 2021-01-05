@@ -1,6 +1,6 @@
 package com.berg.system.controller.mp;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.dao.page.PageInfo;
 import com.berg.common.constant.Result;
 import com.berg.system.service.mp.MediaService;
@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/media")
 @Api(tags = "微信公众号素材管理")
-public class MediaController extends BaseController {
+public class MediaController extends AbstractController {
 
     @Autowired
     MediaService mediaService;

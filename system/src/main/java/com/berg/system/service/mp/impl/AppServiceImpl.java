@@ -2,7 +2,7 @@ package com.berg.system.service.mp.impl;
 
 import com.berg.system.service.mp.AppService;
 import com.berg.vo.mp.MpAppVo;
-import com.berg.wx.mp.properties.WxMpProperties;
+import com.berg.wx.properties.WxMpProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

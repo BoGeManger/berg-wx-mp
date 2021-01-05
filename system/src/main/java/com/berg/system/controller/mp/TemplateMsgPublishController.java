@@ -1,6 +1,6 @@
 package com.berg.system.controller.mp;
 
-import com.berg.common.base.BaseController;
+import com.berg.common.controller.AbstractController;
 import com.berg.dao.page.PageInfo;
 import com.berg.common.constant.Result;
 import com.berg.system.service.mp.TemplateMsgPublishService;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/templateMsgPublish")
 @Api(tags = "微信公众号模板消息发布管理")
-public class TemplateMsgPublishController extends BaseController {
+public class TemplateMsgPublishController extends AbstractController {
 
     @Autowired
     TemplateMsgPublishService templateMsgPublishService;
