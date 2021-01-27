@@ -7,7 +7,7 @@ import com.berg.common.constant.RedisKeyConstants;
 import com.berg.dao.system.mb.entity.MpBindTbl;
 import com.berg.dao.system.mb.service.MpBindTblDao;
 import com.berg.common.exception.FailException;
-import com.berg.mp.service.AbstractService;
+import com.berg.auth.mp.service.AbstractService;
 import com.berg.mp.service.mp.LoginService;
 import com.berg.vo.mp.MpUserInfoVo;
 import com.berg.vo.mp.in.MpGetAuthUrlInVo;

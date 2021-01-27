@@ -5,7 +5,7 @@ import com.berg.dao.page.PageInfo;
 import com.berg.dao.system.mp.entity.MediaTbl;
 import com.berg.dao.system.mp.service.MediaTblDao;
 import com.berg.common.exception.FailException;
-import com.berg.system.service.AbstractService;
+import com.berg.auth.system.service.AbstractService;
 import com.berg.system.service.mp.MediaService;
 import com.berg.vo.mp.MediaVo;
 import com.berg.vo.mp.in.GetMediaPageInVo;

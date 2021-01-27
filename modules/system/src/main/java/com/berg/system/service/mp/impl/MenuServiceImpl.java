@@ -9,7 +9,7 @@ import com.berg.dao.system.mp.entity.MenuTbl;
 import com.berg.dao.system.mp.service.MenuTblDao;
 import com.berg.common.exception.FailException;
 import com.berg.common.exception.ParamException;
-import com.berg.system.service.AbstractService;
+import com.berg.auth.system.service.AbstractService;
 import com.berg.system.service.mp.MenuService;
 import com.berg.vo.mp.MenuVo;
 import com.berg.vo.mp.MpMenuVo;

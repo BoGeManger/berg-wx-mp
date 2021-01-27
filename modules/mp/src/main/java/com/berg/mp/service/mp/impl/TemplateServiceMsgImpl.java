@@ -3,7 +3,7 @@ package com.berg.mp.service.mp.impl;
 import cn.hutool.json.JSONUtil;
 import com.berg.common.constant.RedisKeyConstants;
 import com.berg.common.exception.FailException;
-import com.berg.mp.service.AbstractService;
+import com.berg.auth.mp.service.AbstractService;
 import com.berg.mp.service.mp.TemplateMsgService;
 import com.berg.vo.mp.MpTemplateVo;
 import com.berg.vo.mp.in.MpTemplateSendInVo;

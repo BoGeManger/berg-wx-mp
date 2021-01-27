@@ -10,7 +10,7 @@ import com.berg.dao.page.PageInfo;
 import com.berg.dao.system.mp.entity.KeysReplyTbl;
 import com.berg.dao.system.mp.service.KeysReplyTblDao;
 import com.berg.common.exception.UserFriendException;
-import com.berg.system.service.AbstractService;
+import com.berg.auth.system.service.AbstractService;
 import com.berg.system.service.mp.KeysReplyService;
 import com.berg.vo.mp.KeysReplyEditVo;
 import com.berg.vo.mp.KeysReplyVo;

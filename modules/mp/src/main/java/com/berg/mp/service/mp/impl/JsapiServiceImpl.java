@@ -1,7 +1,7 @@
 package com.berg.mp.service.mp.impl;
 
 import com.berg.common.exception.FailException;
-import com.berg.mp.service.AbstractService;
+import com.berg.auth.mp.service.AbstractService;
 import com.berg.mp.service.mp.JsapiService;
 import com.berg.vo.mp.out.MpCreateJsapiSignatureOutVo;
 import com.berg.wx.utils.WxMpUtil;

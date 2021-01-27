@@ -1,4 +1,4 @@
-package com.berg.mp.service;
+package com.berg.auth.mp.service;
 
 import com.berg.auth.mp.auth.AuthenticationUtil;
 import com.berg.vo.mp.MpUserInfoVo;

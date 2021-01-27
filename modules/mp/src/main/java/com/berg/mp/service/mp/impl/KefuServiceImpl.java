@@ -1,7 +1,7 @@
 package com.berg.mp.service.mp.impl;
 
 import com.berg.common.exception.FailException;
-import com.berg.mp.service.AbstractService;
+import com.berg.auth.mp.service.AbstractService;
 import com.berg.mp.service.mp.KefuService;
 import com.berg.vo.mp.in.MpKefuSendTextInVo;
 import com.berg.wx.utils.WxMpUtil;

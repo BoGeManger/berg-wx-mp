@@ -14,7 +14,7 @@ import com.berg.dao.system.mp.entity.ActivityQrcodeTbl;
 import com.berg.dao.system.mp.service.ActivityQrcodeEventTblDao;
 import com.berg.dao.system.mp.service.ActivityQrcodeRecordTblDao;
 import com.berg.dao.system.mp.service.ActivityQrcodeTblDao;
-import com.berg.system.service.AbstractService;
+import com.berg.auth.system.service.AbstractService;
 import com.berg.system.service.mp.ActivityQRCodeService;
 import com.berg.vo.mp.ActivityQRCodeEditVo;
 import com.berg.vo.mp.ActivityQRCodeEventVo;

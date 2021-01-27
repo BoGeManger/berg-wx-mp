@@ -5,7 +5,7 @@ import com.berg.dao.page.PageInfo;
 import com.berg.dao.system.mp.entity.ShortUrlTbl;
 import com.berg.dao.system.mp.service.ShortUrlTblDao;
 import com.berg.common.exception.FailException;
-import com.berg.system.service.AbstractService;
+import com.berg.auth.system.service.AbstractService;
 import com.berg.system.service.mp.ShortUrlService;
 import com.berg.vo.mp.ShortUrlVo;
 import com.berg.vo.mp.in.GetShortUrlPageInVo;

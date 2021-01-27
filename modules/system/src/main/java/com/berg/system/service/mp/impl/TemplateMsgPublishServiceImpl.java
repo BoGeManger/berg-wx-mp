@@ -10,7 +10,7 @@ import com.berg.dao.system.mp.entity.MsgPublishTbl;
 import com.berg.dao.system.mp.entity.MsgSubscribeTbl;
 import com.berg.dao.system.mp.service.MsgPublishTblDao;
 import com.berg.dao.system.mp.service.MsgSubscribeTblDao;
-import com.berg.system.service.AbstractService;
+import com.berg.auth.system.service.AbstractService;
 import com.berg.system.service.mp.TemplateMsgPublishService;
 import com.berg.vo.mp.MsgPublishEditVo;
 import com.berg.vo.mp.MsgPublishVo;

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.berg.dao.page.PageInfo;
 import com.berg.dao.system.mp.entity.MsgPublishTbl;
 import com.berg.dao.system.mp.service.MsgPublishTblDao;
-import com.berg.mp.service.AbstractService;
+import com.berg.auth.mp.service.AbstractService;
 import com.berg.mp.service.mp.TemplateMsgPublishService;
 import com.berg.vo.common.PageInVo;
 import com.berg.vo.mp.MsgPublishVo;

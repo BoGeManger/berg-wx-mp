@@ -9,7 +9,7 @@ import com.berg.dao.system.mb.service.MpBindTblDao;
 import com.berg.common.exception.FailException;
 import com.berg.common.exception.UnauthException;
 import com.berg.common.exception.UserFriendException;
-import com.berg.mp.service.AbstractService;
+import com.berg.auth.mp.service.AbstractService;
 import com.berg.mp.service.mp.UserService;
 import com.berg.vo.mp.in.MpRegisterInVo;
 import com.berg.vo.mp.out.MpOAuthUserInfoOutVo;

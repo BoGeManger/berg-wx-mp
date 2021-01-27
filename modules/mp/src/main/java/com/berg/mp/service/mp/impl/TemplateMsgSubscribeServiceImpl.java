@@ -3,7 +3,7 @@ package com.berg.mp.service.mp.impl;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.berg.dao.system.mp.entity.MsgSubscribeTbl;
 import com.berg.dao.system.mp.service.MsgSubscribeTblDao;
-import com.berg.mp.service.AbstractService;
+import com.berg.auth.mp.service.AbstractService;
 import com.berg.mp.service.mp.TemplateMsgSubscribeService;
 import com.berg.vo.mp.in.TemplateSubscribeInVo;
 import org.springframework.beans.factory.annotation.Autowired;
