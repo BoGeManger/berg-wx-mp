@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.NotBlank;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/user")
 @Api(tags = "微信公众号用户")
 public class UserController extends AbstractController {
 
