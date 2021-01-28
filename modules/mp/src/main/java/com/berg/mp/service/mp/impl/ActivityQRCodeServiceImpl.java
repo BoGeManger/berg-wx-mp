@@ -17,9 +17,6 @@ public class ActivityQRCodeServiceImpl  implements ActivityQRCodeService {
     StringRedisTemplate stringRedisTemplate;
 
     @Autowired
-    KeysReplyService keysReplyService;
-
-    @Autowired
     ActivityQRCodeAsyncTask activityQRCodeAsyncTask;
 
     /**
@@ -29,15 +26,11 @@ public class ActivityQRCodeServiceImpl  implements ActivityQRCodeService {
      * @param event
      * @return
      */
-    public WxMpXmlOutMessage sendByEvent(WxMpXmlMessage wxMpXmlMessage,String appId, String event){
-        WxMpXmlOutMessage wxMpXmlOutMessage = null;
+    public String getKeyReply(WxMpXmlMessage wxMpXmlMessage,String appId, String event){
         String code = wxMpXmlMessage.getEventKey().replace("qrscene_","");
         String key = String.format(RedisKeyConstants.Mp.MP_ACTIVITY_QRCODE_EVENT_SET, appId, code,event);
         String content = stringRedisTemplate.opsForValue().get(key);
-        if(StringUtils.isNotBlank(content)){
-            wxMpXmlOutMessage = keysReplyService.sendByKeyReply(wxMpXmlMessage,appId,content);
-        }
         activityQRCodeAsyncTask.addActivityQrcodeRecord(appId,wxMpXmlMessage.getFromUser(),code,event);
-        return wxMpXmlOutMessage;
+        return content;
     }
 }

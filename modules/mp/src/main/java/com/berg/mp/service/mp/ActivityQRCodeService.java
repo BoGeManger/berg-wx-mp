@@ -5,5 +5,5 @@ import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 
 public interface ActivityQRCodeService {
 
-    WxMpXmlOutMessage sendByEvent(WxMpXmlMessage wxMpXmlMessage, String appId, String event);
+    String getKeyReply(WxMpXmlMessage wxMpXmlMessage, String appId, String event);
 }

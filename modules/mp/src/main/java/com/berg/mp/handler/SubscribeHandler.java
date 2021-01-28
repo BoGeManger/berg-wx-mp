@@ -9,6 +9,7 @@ import me.chanjar.weixin.mp.api.WxMpMessageHandler;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -33,7 +34,10 @@ public class SubscribeHandler implements WxMpMessageHandler {
         //关注用户记录
         userAsyncTask.addOrUpdateMaBindBySubscribe(appId,wxMpXmlMessage.getFromUser(),wxMpXmlMessage.getScene());
         if(wxMpXmlMessage.getEventKey().contains("qrscene_")){//扫码关注
-            wxMpXmlOutMessage = activityQRCodeService.sendByEvent(wxMpXmlMessage,appId,"subscribe");
+            String conent = activityQRCodeService.getKeyReply(wxMpXmlMessage,appId,"subscribe");
+            if(StringUtils.isNotBlank(conent)){
+                wxMpXmlOutMessage = keysReplyService.sendByKeyReply(wxMpXmlMessage,appId,conent);
+            }
         }else {//普通关注
             //查询关注关键字并回复
             wxMpXmlOutMessage = keysReplyService.sendByKeyReply(wxMpXmlMessage,appId,"关注");
