@@ -28,19 +28,18 @@ public class TemplateMsgController extends AbstractController {
     @ApiOperation("获取模板消息发送记录分页列表")
     @GetMapping(value = "getMsgRecordPage")
     public Result<PageInfo<MsgRecordVo>> getMsgRecordPage(@Validated GetMsgRecordPageInVo input){
-        return getSuccessResult("请求成功",templateMsgService.getMsgRecordPage(input));
+        return success("请求成功",()->templateMsgService.getMsgRecordPage(input));
     }
 
     @ApiOperation(value = "获取模板消息列表")
     @GetMapping(value = "getTemplateList")
     public Result<List<MpTemplateVo>> getTemplateList(@ApiParam(value = "微信公众号appId",required = true) @RequestParam String appId){
-        return getSuccessResult("请求成功",templateMsgService.getTemplateList(appId));
+        return success("请求成功",()->templateMsgService.getTemplateList(appId));
     }
 
     @ApiOperation(value = "删除模板缓存")
     @DeleteMapping(value = "delTemplateCache")
-    public Result<Boolean> delTemplateCache(@RequestBody @Validated MpAppIdInVo input){
-        templateMsgService.delTemplateCache(input.getAppId());
-        return getSuccessResult("请求成功",true);
+    public Result<Void> delTemplateCache(@RequestBody @Validated MpAppIdInVo input){
+        return success("请求成功",()->templateMsgService.delTemplateCache(input.getAppId()));
     }
 }

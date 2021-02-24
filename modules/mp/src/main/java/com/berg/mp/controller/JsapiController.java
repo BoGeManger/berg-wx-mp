@@ -25,6 +25,6 @@ public class JsapiController extends AbstractController {
     @ApiOperation(value = "生成JSSDK配置")
     @GetMapping(value = "createJsapiSignature")
     public Result<MpCreateJsapiSignatureOutVo> createJsapiSignature(@NotBlank(message = "请求地址不能为空") @RequestParam(name = "url", required = true) String url){
-        return getSuccessResult("请求成功",jsapiService.createJsapiSignature(url));
+        return success("请求成功",()->jsapiService.createJsapiSignature(url));
     }
 }

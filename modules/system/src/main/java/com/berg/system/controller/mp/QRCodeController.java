@@ -26,19 +26,19 @@ public class QRCodeController extends AbstractController {
     @ApiOperation(value = "获取微信二维码分页列表")
     @GetMapping(value = "getQRCodePage")
     public Result<PageInfo<QRCodeVo>> getQRCodePage(@Validated GetQRCodePageInVo input){
-        return getSuccessResult("请求成功",qrCodeService.getQRCodePage(input));
+        return success("请求成功",()->qrCodeService.getQRCodePage(input));
     }
 
     @ApiOperation(value = "创建临时二维码")
     @PostMapping(value = "createTmp")
     public Result<MpQrCodeTicketVo> createTmp(@RequestBody @Validated MpQRCodeCreateTmpInVo input){
-        return getSuccessResult("请求成功",qrCodeService.createTmp(input.getAppId(),input.getSceneStr(),input.getExpireSeconds(),input.getRemark()));
+        return success("请求成功",()->qrCodeService.createTmp(input.getAppId(),input.getSceneStr(),input.getExpireSeconds(),input.getRemark()));
     }
 
     @ApiOperation(value = "创建永久二维码")
     @PostMapping(value = "create")
     public Result<MpQrCodeTicketVo> create(@RequestBody @Validated MpQRCodeCreateInVo input){
-        return getSuccessResult("请求成功",qrCodeService.create(input.getAppId(),input.getSceneStr(),input.getRemark()));
+        return success("请求成功",()->qrCodeService.create(input.getAppId(),input.getSceneStr(),input.getRemark()));
     }
 }
 

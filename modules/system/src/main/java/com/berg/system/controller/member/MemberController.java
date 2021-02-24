@@ -27,12 +27,12 @@ public class MemberController extends AbstractController {
     @ApiOperation("获取会员分页列表")
     @GetMapping(value = "getMemberPage")
     public Result<PageInfo<MemberVo>> getMemberPage(@Validated GetMemberPageInVo input){
-        return getSuccessResult("请求成功",memberService.getMemberPage(input));
+        return success("请求成功",()->memberService.getMemberPage(input));
     }
 
     @ApiOperation("获取会员微信公众号绑定分页列表")
     @GetMapping(value = "getMpBindPage")
     public Result<PageInfo<MpBindVo>> getMpBindPage(@Validated GetMpBindPageInVo input){
-        return getSuccessResult("请求成功",memberService.getMpBindPage(input));
+        return success("请求成功",()->memberService.getMpBindPage(input));
     }
 }

@@ -24,25 +24,24 @@ public class LoginController extends AbstractController {
     @ApiOperation(value = "获取公众号网页授权地址",notes = "前端首次登录或未存在授权信息时需重新调用,并登录获取请求授权")
     @GetMapping(value = "getAuthUrl")
     public Result<String> getAuthUrl(@Validated MpGetAuthUrlInVo input){
-        return getSuccessResult("请求成功",loginService.getAuthUrl(input));
+        return success("请求成功",()->loginService.getAuthUrl(input));
     }
 
     @ApiOperation(value = "公众号登录",notes = "前端未存在请求校验时调用,生成请求校验并返回最新用户信息")
     @PostMapping(value = "login")
     public Result<MpLoginOutVo> login(@RequestBody @Validated MpLoginInVo input){
-        return getSuccessResult("请求成功",loginService.login(input));
+        return success("请求成功",()->loginService.login(input));
     }
 
     @ApiOperation(value = "刷新请求校验",notes = "前端存在请求校验时调用,刷新请求校验并返回最新用户信息")
     @PostMapping(value = "refresh")
     public Result<MpLoginOutVo> refresh(@RequestBody @Validated MpRefreshInVo input){
-        return getSuccessResult("请求成功",loginService.refresh(input));
+        return success("请求成功",()->loginService.refresh(input));
     }
 
     @ApiOperation(value = "公众号退出登录",notes = "删除缓存请求校验")
     @PostMapping(value = "logout")
-    public Result<Boolean> logout(){
-        loginService.logout();
-        return getSuccessResult("请求成功",true);
+    public Result<Void> logout(){
+        return success("请求成功",()->loginService.logout());
     }
 }

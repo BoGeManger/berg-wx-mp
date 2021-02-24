@@ -24,12 +24,12 @@ public class ShortUrlController extends AbstractController {
     @ApiOperation(value = "获取短连接记录分页列表")
     @GetMapping(value = "getShortUrlPage")
     public Result<PageInfo<ShortUrlVo>> getShortUrlPage(@Validated GetShortUrlPageInVo input){
-        return getSuccessResult("请求成功",shortUrlService.getShortUrlPage(input));
+        return success("请求成功",()->shortUrlService.getShortUrlPage(input));
     }
 
     @ApiOperation(value = "生成短连接")
     @PostMapping(value = "create")
     public Result<String> create(@RequestBody @Validated MpCreateShortUrlInVo input){
-        return getSuccessResult("请求成功",shortUrlService.create(input));
+        return success("请求成功",()->shortUrlService.create(input));
     }
 }

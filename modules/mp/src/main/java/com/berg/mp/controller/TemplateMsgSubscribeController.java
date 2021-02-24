@@ -24,15 +24,13 @@ public class TemplateMsgSubscribeController extends AbstractController {
 
     @ApiOperation("订阅模板消息")
     @PostMapping(value = "subscribe")
-    public Result<Boolean> subscribe(@RequestBody @Validated TemplateSubscribeInVo input){
-        templateMsgSubscribeService.subscribe(input);
-        return getSuccessResult("请求成功",true);
+    public Result<Void> subscribe(@RequestBody @Validated TemplateSubscribeInVo input){
+        return success("请求成功",()->templateMsgSubscribeService.subscribe(input));
     }
 
     @ApiOperation(value = "取消订阅模板消息",notes = "id为模板消息发布id")
     @PostMapping(value = "unsubscribe")
-    public Result<Boolean> unsubscribe(@RequestBody @Validated EntityIdVo<String> input){
-        templateMsgSubscribeService.unsubscribe(input.getId());
-        return getSuccessResult("请求成功",true);
+    public Result<Void> unsubscribe(@RequestBody @Validated EntityIdVo<String> input){
+        return success("请求成功",()->templateMsgSubscribeService.unsubscribe(input.getId()));
     }
 }

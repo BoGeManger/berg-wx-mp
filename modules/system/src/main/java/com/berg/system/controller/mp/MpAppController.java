@@ -24,6 +24,6 @@ public class MpAppController extends AbstractController {
     @ApiOperation("获取公众号应用列表")
     @GetMapping(value = "getAppList")
     public Result<List<MpAppVo>> getAppList(){
-        return getSuccessResult("请求成功",appService.getAppList());
+        return success("请求成功",()->appService.getAppList());
     }
 }

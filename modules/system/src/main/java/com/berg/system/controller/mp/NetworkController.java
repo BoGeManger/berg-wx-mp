@@ -24,6 +24,6 @@ public class NetworkController extends AbstractController {
     @ApiOperation(value = "网络检测")
     @GetMapping(value = "netCheck")
     public Result<MpNetCheckOutVo> netCheck(@Validated MpNetCheckInVo input){
-        return getSuccessResult("请求成功",networkService.netCheck(input));
+        return success("请求成功",()->networkService.netCheck(input));
     }
 }

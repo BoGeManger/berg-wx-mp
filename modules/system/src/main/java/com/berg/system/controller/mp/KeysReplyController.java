@@ -26,31 +26,30 @@ public class KeysReplyController extends AbstractController {
     @ApiOperation("获取关键字自动回复分页列表")
     @GetMapping(value = "getKeysReplyPage")
     public Result<PageInfo<KeysReplyVo>> getKeysReplyPage(@Validated GetKeysReplyPageInVo input){
-        return getSuccessResult("请求成功",keysReplyService.getKeysReplyPage(input));
+        return success("请求成功",()->keysReplyService.getKeysReplyPage(input));
     }
 
     @ApiOperation("获取关键字自动回复")
     @GetMapping(value = "getKeysReply")
     public Result<KeysReplyEditVo> getKeysReply(@ApiParam(value = "表id",required = true) @RequestParam Integer id){
-        return getSuccessResult("请求成功",keysReplyService.getKeysReply(id));
+        return success("请求成功",()->keysReplyService.getKeysReply(id));
     }
 
     @ApiOperation("新增关键字自动回复")
     @PostMapping(value = "addKeysReply")
     public Result<Integer> addKeysReply(@RequestBody @Validated KeysReplyEditVo input){
-        return getSuccessResult("请求成功",keysReplyService.addKeysReply(input));
+        return success("请求成功",()->keysReplyService.addKeysReply(input));
     }
 
     @ApiOperation("修改关键字自动回复")
     @PutMapping(value = "updateKeysReply")
     public Result<Integer> updateKeysReply(@RequestBody @Validated KeysReplyEditVo input){
-        return getSuccessResult("请求成功",keysReplyService.updateKeysReply(input));
+        return success("请求成功",()->keysReplyService.updateKeysReply(input));
     }
 
     @ApiOperation("删除关键字自动回复")
     @DeleteMapping(value = "delKeysReply")
-    public Result<Boolean> delKeysReply(@RequestBody EntityIdVo<Integer> input){
-        keysReplyService.delKeysReply(input.getId());
-        return getSuccessResult("请求成功",true);
+    public Result<Void> delKeysReply(@RequestBody EntityIdVo<Integer> input){
+        return success("请求成功",()->keysReplyService.delKeysReply(input.getId()));
     }
 }

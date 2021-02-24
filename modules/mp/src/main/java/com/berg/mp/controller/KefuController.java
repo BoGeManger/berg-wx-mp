@@ -24,6 +24,6 @@ public class KefuController extends AbstractController {
     @ApiOperation(value = "发送客服文本消息")
     @PostMapping(value = "sendText")
     public Result<Boolean> sendText(@RequestBody @Validated MpKefuSendTextInVo input){
-        return getSuccessResult("请求成功",kefuService.sendText(input));
+        return success("请求成功",()->kefuService.sendText(input));
     }
 }

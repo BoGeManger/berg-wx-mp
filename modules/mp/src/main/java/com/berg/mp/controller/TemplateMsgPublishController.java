@@ -26,12 +26,12 @@ public class TemplateMsgPublishController extends AbstractController {
     @ApiOperation("获取模板消息发布分页列表")
     @GetMapping(value = "getMsgPublishPage")
     public Result<PageInfo<MsgPublishVo>> getMsgPublishPage(@Validated GetMsgPublishPageInVo input){
-        return getSuccessResult("请求成功",templateMsgPublishService.getMsgPublishPage(input));
+        return success("请求成功",()->templateMsgPublishService.getMsgPublishPage(input));
     }
 
     @ApiOperation("获取已订阅模板消息分页列表")
     @GetMapping(value = "getMsgSubscribePublishPage")
     public Result<PageInfo<MsgPublishVo>> getMsgSubscribePublishPage(@Validated PageInVo input){
-        return getSuccessResult("请求成功",templateMsgPublishService.getMsgSubscribePublishPage(input));
+        return success("请求成功",()->templateMsgPublishService.getMsgSubscribePublishPage(input));
     }
 }

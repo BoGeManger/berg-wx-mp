@@ -25,18 +25,18 @@ public class TagsController extends AbstractController {
     @ApiOperation("获取标签列表")
     @GetMapping(value = "getTagsList")
     public Result<List<MpUserTagVo>> getTagsList(@ApiParam(value = "微信公众号appId",required = true) @RequestParam String appId){
-        return getSuccessResult("请求成功",tagsService.getTagsList(appId));
+        return success("请求成功",()->tagsService.getTagsList(appId));
     }
 
     @ApiOperation("批量为用户打标签")
     @PostMapping(value = "batchTagging")
     public Result<Boolean> batchTagging(@RequestBody @Validated MpBatchTagInVo input){
-        return getSuccessResult("请求成功",tagsService.batchTagging(input));
+        return success("请求成功",()->tagsService.batchTagging(input));
     }
 
     @ApiOperation("批量为用户取消标签")
     @PostMapping(value = "batchUntagging")
     public Result<Boolean> batchUntagging(@RequestBody @Validated MpBatchTagInVo input){
-        return getSuccessResult("请求成功",tagsService.batchUntagging(input));
+        return success("请求成功",()->tagsService.batchUntagging(input));
     }
 }

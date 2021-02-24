@@ -26,12 +26,12 @@ public class DataCubeController extends AbstractController {
     @ApiOperation(value = "获取接口分析数据")
     @GetMapping(value = "getInterfaceSummary")
     public Result<List<MpInterfaceSummaryVo>> getInterfaceSummary(@Validated MpGetInterfaceSummaryInVo input){
-        return getSuccessResult("请求成功",dataCubeService.getInterfaceSummary(input));
+        return success("请求成功",()->dataCubeService.getInterfaceSummary(input));
     }
 
     @ApiOperation(value = "获取接口分析分时数据")
     @GetMapping(value = "getInterfaceSummaryHour")
     public Result<List<MpInterfaceSummaryVo>> getInterfaceSummaryHour(@Validated MpGetInterfaceSummaryInVo input){
-        return getSuccessResult("请求成功",dataCubeService.getInterfaceSummaryHour(input));
+        return success("请求成功",()->dataCubeService.getInterfaceSummaryHour(input));
     }
 }

@@ -26,31 +26,30 @@ public class TemplateMsgPublishController extends AbstractController {
     @ApiOperation("获取模板消息发布分页列表")
     @GetMapping(value = "getMsgPublishPage")
     public Result<PageInfo<MsgPublishVo>> getMsgPublishPage(@Validated GetMsgPublishPageInVo input){
-        return getSuccessResult("请求成功",templateMsgPublishService.getMsgPublishPage(input));
+        return success("请求成功",()->templateMsgPublishService.getMsgPublishPage(input));
     }
 
     @ApiOperation("获取模板消息发布")
     @GetMapping(value = "getMsgPublish")
     public Result<MsgPublishEditVo> getMsgPublish(@ApiParam(value = "表id",required = true) @RequestParam String id){
-        return getSuccessResult("请求成功",templateMsgPublishService.getMsgPublish(id));
+        return success("请求成功",()->templateMsgPublishService.getMsgPublish(id));
     }
 
     @ApiOperation("新增模板消息发布")
     @PostMapping(value = "addMsgPublish")
-    public Result<MsgPublishEditVo> addMsgPublish(@RequestBody @Validated MsgPublishEditVo input){
-        return getSuccessResult("请求成功",templateMsgPublishService.addMsgPublish(input));
+    public Result<String> addMsgPublish(@RequestBody @Validated MsgPublishEditVo input){
+        return success("请求成功",()->templateMsgPublishService.addMsgPublish(input));
     }
 
     @ApiOperation("修改模板消息发布")
     @PutMapping(value = "updateMsgPublish")
-    public Result<MsgPublishEditVo> updateMsgPublish(@RequestBody @Validated MsgPublishEditVo input){
-        return getSuccessResult("请求成功",templateMsgPublishService.updateMsgPublish(input));
+    public Result<String> updateMsgPublish(@RequestBody @Validated MsgPublishEditVo input){
+        return success("请求成功",()->templateMsgPublishService.updateMsgPublish(input));
     }
 
     @ApiOperation("立即发送消息")
     @PutMapping(value = "sendMessage")
-    public Result<Boolean> sendMessage(@RequestBody @Validated EntityIdVo<String> input){
-        templateMsgPublishService.sendMessage(input.getId());
-        return getSuccessResult("请求成功",true);
+    public Result<Void> sendMessage(@RequestBody @Validated EntityIdVo<String> input){
+        return success("请求成功",()->templateMsgPublishService.sendMessage(input.getId()));
     }
 }

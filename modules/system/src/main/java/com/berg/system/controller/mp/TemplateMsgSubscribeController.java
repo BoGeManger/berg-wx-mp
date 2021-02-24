@@ -25,6 +25,6 @@ public class TemplateMsgSubscribeController extends AbstractController {
     @ApiOperation("获取模板消息订阅分页列表")
     @GetMapping(value = "getMsgSubscribePage")
     public Result<PageInfo<MsgSubscribeVo>> getMsgSubscribePage(@Validated GetMsgSubscribePageInVo input){
-        return getSuccessResult("请求成功",templateMsgSubscribeService.getMsgSubscribePage(input));
+        return success("请求成功",()->templateMsgSubscribeService.getMsgSubscribePage(input));
     }
 }

@@ -24,12 +24,12 @@ public class TemplateMsgController extends AbstractController {
     @ApiOperation(value = "获取模板消息列表")
     @GetMapping(value = "getTemplateList")
     public Result<List<MpTemplateVo>> getTemplateList(){
-        return getSuccessResult("请求成功",templateMsgService.getTemplateList());
+        return success("请求成功",()->templateMsgService.getTemplateList());
     }
 
     @ApiOperation(value = "发送模板消息",notes = "返回微信消息id")
     @PostMapping(value = "send")
     public Result<String> send(@RequestBody @Validated MpTemplateSendInVo input){
-        return getSuccessResult("请求成功",templateMsgService.send(input));
+        return success("请求成功",()->templateMsgService.send(input));
     }
 }
